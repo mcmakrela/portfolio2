@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>videouberwacht</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Helvetica Neue', sans-serif;
+        background-color: #000;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+      aside {
+        background-color: #111;
+        border-bottom: 1px solid #333;
+        width: 100%;
+        padding: 1rem;
+        box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      aside img {
+        width: 50px;
+      }
+      aside h1 {
+        font-size: 1.2rem;
+        margin: 0 1rem;
+      }
+      nav {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      nav a {
+        color: #ccc;
+        text-decoration: none;
+      }
+      .language-switcher-container {
+        text-align: right;
+        margin-top: 0.5rem;
+      }
+      .language-toggle {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #ccc;
+        cursor: pointer;
+      }
+      .language-options {
+        display: none;
+        margin-top: 0.3rem;
+      }
+      .language-options button {
+        background: #222;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 4px;
+        padding: 0.3rem 0.6rem;
+        margin: 0.2rem;
+      }
+      .language-switcher-container.active .language-options {
+        display: block;
+      }
+      main {
+        padding: 2rem 1rem;
+      }
+      .section {
+        max-width: 1000px;
+        margin: 0 auto 3rem auto;
+      }
+      .videos iframe {
+        width: 100%;
+        height: 315px;
+        margin-bottom: 2rem;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+      .gallery img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+      }
+      .contact a {
+        color: #66f;
+        text-decoration: underline;
+      }
+      footer {
+        font-size: 0.9rem;
+        color: #777;
+        text-align: center;
+        padding: 2rem 0;
+      }
+      @media (min-width: 768px) {
+        aside {
+          flex-direction: row;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <aside>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <img src="logo.png" alt="videouberwacht Logo" />
+        <h1>videouberwacht</h1>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#films">Films</a>
+        <a href="#collab">Collab</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="language-switcher-container">
+        <button class="language-toggle" onclick="toggleLanguageMenu()">🌐</button>
+        <div class="language-options">
+          <button onclick="setLanguage('en')">🇬🇧</button>
+          <button onclick="setLanguage('de')">🇩🇪</button>
+          <button onclick="setLanguage('pl')">🇵🇱</button>
+        </div>
+      </div>
+    </aside>
+
+    <main>
+      <section class="section" id="about">
+        <h2 id="aboutTitle">About Me</h2>
+        <p id="aboutText">Kacper Wissuwa is a filmmaker focused on creative visual storytelling through documentary, music video, and experimental film. His work blends social observation, cinematic aesthetics, and real human narratives.</p>
+      </section>
+
+      <section class="section videos" id="films">
+        <h2 id="filmsTitle">Selected Works</h2>
+        <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen></iframe>
+      </section>
+
+      <section class="section" id="collab">
+        <h2 id="collabTitle">Collaboration</h2>
+        <p id="collabText">Open to collaborations with artists, brands, NGOs, and creative teams. Whether you're looking to co-create a music video, document a cause, or bring a bold visual concept to life—let's connect.</p>
+      </section>
+
+      <section class="section gallery" id="gallery">
+        <h2 id="galleryTitle">Gallery</h2>
+      </section>
+
+      <section class="section contact" id="contact">
+        <h2 id="contactTitle">Contact</h2>
+        <p><span id="emailLabel">Email:</span> <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+        <p><span id="instagramLabel">Instagram:</span> <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
+      </section>
+
+      <footer>
+        &copy; 2025 videouberwacht. All rights reserved.
+      </footer>
+    </main>
+    <script>
+      const translations = {
+        en: {
+          about: "About Me",
+          aboutText: "Kacper Wissuwa is a filmmaker focused on creative visual storytelling through documentary, music video, and experimental film. His work blends social observation, cinematic aesthetics, and real human narratives.",
+          films: "Selected Works",
+          gallery: "Gallery",
+          contact: "Contact",
+          email: "Email:",
+          instagram: "Instagram:",
+          collab: "Collaboration",
+          collabText: "Open to collaborations with artists, brands, NGOs, and creative teams. Whether you're looking to co-create a music video, document a cause, or bring a bold visual concept to life—let's connect."
+        },
+        de: {
+          about: "Über mich",
+          aboutText: "Kacper Wissuwa ist ein Filmemacher mit Schwerpunkt auf dokumentarischem Erzählen, Musikvideos und experimentellem Film. Seine Arbeiten verbinden soziale Beobachtung mit filmischer Ästhetik und echten menschlichen Geschichten.",
+          films: "Ausgewählte Werke",
+          gallery: "Galerie",
+          contact: "Kontakt",
+          email: "E-Mail:",
+          instagram: "Instagram:",
+          collab: "Zusammenarbeit",
+          collabText: "Offen für Zusammenarbeit mit Künstlern, Marken, NGOs und kreativen Teams. Ob Musikvideo, soziales Projekt oder visuelle Idee – melde dich gern."
+        },
+        pl: {
+          about: "O mnie",
+          aboutText: "Kacper Wissuwa to filmowiec skupiający się na opowiadaniu historii poprzez dokument, teledyski i formy eksperymentalne. W jego filmach łączą się obserwacja społeczna, filmowy styl i autentyczne ludzkie doświadczenia.",
+          films: "Wybrane filmy",
+          gallery: "Galeria",
+          contact: "Kontakt",
+          email: "E-mail:",
+          instagram: "Instagram:",
+          collab: "Współpraca",
+          collabText: "Otwarty na współpracę z artystami, markami, organizacjami i zespołami twórczymi. Teledysk, reportaż czy projekt społeczny? – odezwij się."
+        }
+      };
+      function setLanguage(lang) {
+        document.getElementById("aboutTitle").innerText = translations[lang].about;
+        document.getElementById("aboutText").innerText = translations[lang].aboutText;
+        document.getElementById("filmsTitle").innerText = translations[lang].films;
+        document.getElementById("galleryTitle").innerText = translations[lang].gallery;
+        document.getElementById("contactTitle").innerText = translations[lang].contact;
+        document.getElementById("emailLabel").innerText = translations[lang].email;
+        document.getElementById("instagramLabel").innerText = translations[lang].instagram;
+        document.getElementById("collabTitle").innerText = translations[lang].collab;
+        document.getElementById("collabText").innerText = translations[lang].collabText;
+      }
+      function toggleLanguageMenu() {
+        document.querySelector('.language-switcher-container').classList.toggle('active');
+      }
+      setLanguage('en');
+    </script>
+  </body>
+</html>
