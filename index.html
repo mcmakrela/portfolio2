@@ -124,6 +124,44 @@
       background: #fff;
       opacity: 0.5;
     }
+.gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+    }
+  .lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  display: none;
+}
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+}
+.lightbox.active {
+  display: flex;
+  animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 </style>
 </head>
 <body>
@@ -158,54 +196,54 @@
     </section>
 
     <section class="section" id="gallery">
-      <h2>Gallery</h2>
-      <div class="slideshow-container">
-        <img class="slide-image" src="R1-08878-0004[1].jpg" />
-        <img class="slide-image" src="R1-08878-0015[1].jpg" />
-        <img class="slide-image" src="R1-08878-0023[1].jpg" />
-        <img class="slide-image" src="R1-08878-0024[1].jpg" />
-        <img class="slide-image" src="R1-08880-002A[1].jpg" />
-        <img class="slide-image" src="R1-08880-016A[1].jpg" />
-      </div>
-    </section>
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="R1-08878-0004[1].jpg" alt="Gallery image 1" />
+    <img src="R1-08878-0015[1].jpg" alt="Gallery image 2" />
+    <img src="R1-08878-0023[1].jpg" alt="Gallery image 3" />
+    <img src="R1-08878-0024[1].jpg" alt="Gallery image 4" />
+    <img src="R1-08880-002A[1].jpg" alt="Gallery image 5" />
+    <img src="R1-08880-016A[1].jpg" alt="Gallery image 6" />
+  </div>
+</section>
 
     <section class="section contact" id="contact">
       <h2>Contact</h2>
       <p>Email: <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
       <p>Instagram: <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
     </section>
-  </main>
+    <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded image" />
+  </div>
+</main>
 
   <script>
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-      const slides = document.getElementsByClassName("slide-image");
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
       }
-      slideIndex++;
-      if (slideIndex > slides.length) {slideIndex = 1;}
-      slides[slideIndex - 1].style.display = "block";
-      slides[slideIndex - 1].classList.add('fade');
-      setTimeout(() => slides[slideIndex - 1].classList.remove('fade'), 900);
-      setTimeout(showSlides, 4000);
-    }
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.1
     });
+  }, {
+    threshold: 0.1
+  });
 
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
+  document.querySelectorAll('.section').forEach(section => {
+    observer.observe(section);
+  });
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+
+  document.querySelectorAll('.gallery-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.classList.add('active');
+      lightboxImg.src = img.src;
     });
-  </script>
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+  });
+</script>
 </body>
 </html>
