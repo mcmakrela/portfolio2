@@ -180,6 +180,101 @@
   </style>
 </head>
 <body>
-<!-- code remains the same as in the previous version -->
+<div class="language-switcher-container">
+  <div class="language-switcher">
+    🌐
+    <div class="language-options">
+      <a href="#">🇬🇧</a>
+      <a href="#">🇵🇱</a>
+      <a href="#">🇩🇪</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <nav>
+    <img src="logo_orange.svg" alt="logo" style="height: 36px; margin-right: 10px;" />
+    <span style="font-size: 1.2rem; color: white;">videouberwacht</span>
+  </nav>
+
+  <section class="section" id="films">
+    <h2>🎬 Selected Works</h2>
+    <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/oGLswQXQXQzQE" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <section class="section" id="upcoming">
+    <h2>🎞️ Upcoming</h2>
+    <img src="_plakat.jpg" alt="Under the Same Sky Poster" />
+    <p style="text-align: center;">Kacper is currently working on a new film <strong>"Under the Same Sky"</strong>, shot across Ukraine. Premiering 2025.</p>
+  </section>
+
+  <section class="section" id="about">
+    <h2>👤 About Me</h2>
+    <p style="text-align: center;">Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
+  </section>
+
+  <section class="section" id="map">
+    <h2>🗺️ Places I've Filmed</h2>
+    <div style="display: flex; justify-content: center;">
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <h2>📸 Gallery</h2>
+    <div class="gallery-grid" id="galleryGrid">
+      <img src="R1-08878-0004[1].jpg" alt="Gallery image" />
+      <img src="R1-08878-0015[1].jpg" alt="Gallery image" />
+      <img src="R1-08878-0023[1].jpg" alt="Gallery image" />
+      <img src="R1-08878-0024[1].jpg" alt="Gallery image" />
+      <img src="R1-08880-002A[1].jpg" alt="Gallery image" />
+      <img src="R1-08880-016A[1].jpg" alt="Gallery image" />
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <h2>📬 Contact</h2>
+    <p style="text-align: center;">
+      <a href="mailto:kacper.wissuwa@videouberwacht.com">📧 kacper.wissuwa@videouberwacht.com</a><br>
+      <a href="https://instagram.com/mcmakrela" target="_blank">📸 @mcmakrela</a>
+    </p>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded image" />
+  </div>
+</main>
+<script>
+  const allImages = [
+    "R1-08878-0004[1].jpg",
+    "R1-08878-0015[1].jpg",
+    "R1-08878-0023[1].jpg",
+    "R1-08878-0024[1].jpg",
+    "R1-08880-002A[1].jpg",
+    "R1-08880-016A[1].jpg"
+  ];
+  const galleryGrid = document.getElementById("galleryGrid");
+  let currentIndex = 6;
+  setInterval(() => {
+    const newImg = document.createElement("img");
+    newImg.src = allImages[currentIndex % allImages.length];
+    newImg.alt = "Gallery image";
+    newImg.style.opacity = 0;
+    newImg.style.transition = "opacity 0.5s ease";
+
+    const removeIndex = Math.floor(Math.random() * galleryGrid.children.length);
+    galleryGrid.replaceChild(newImg, galleryGrid.children[removeIndex]);
+
+    requestAnimationFrame(() => {
+      newImg.style.opacity = 1;
+    });
+    currentIndex++;
+  }, 5000);
+</script>
 </body>
 </html>
