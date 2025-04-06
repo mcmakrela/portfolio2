@@ -34,88 +34,7 @@
       font-size: 2em;
       margin-bottom: 0.5em;
     }
-    iframe {
-      width: 100%;
-      max-width: 720px;
-      height: 405px;
-      margin-bottom: 20px;
-      display: block;
-      border-radius: 8px;
-    }
-    .slideshow-container {
-      position: relative;
-      width: 100%;
-      margin: auto;
-      text-align: center;
-    }
-    .slide-image {
-      display: none;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-    }
-    .slide-image:hover {
-      transform: scale(1.02);
-    }
-    #upcoming img {
-      display: block;
-      margin: 0 auto 20px;
-    }
-    .language-menu {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 999;
-    }
-    .language-toggle {
-      background: #222;
-      color: #fff;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background 0.3s ease;
-    }
-    .language-toggle:hover {
-      background: #444;
-    }
-    .language-list {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: #111;
-      border: 1px solid #333;
-      border-radius: 6px;
-    }
-    .language-list a {
-      display: block;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px;
-    }
-    .language-menu:hover .language-list {
-      display: block;
-    }
-    @media screen and (max-width: 768px) {
-      iframe {
-        height: 240px;
-      }
-      .slide-image {
-        height: auto;
-        max-height: 70vh;
-      }
-    }
-  .slide-image.fade {
-      animation: fadeEffect 1s ease-in-out;
-    }
-    @keyframes fadeEffect {
-      from {opacity: 0; transform: scale(0.98);}
-      to {opacity: 1; transform: scale(1);}
-    }
-    .section h2::after {
+    h2::after {
       content: '';
       display: block;
       width: 50px;
@@ -124,7 +43,15 @@
       background: #fff;
       opacity: 0.5;
     }
-.gallery-grid {
+    iframe {
+      width: 100%;
+      max-width: 720px;
+      height: 405px;
+      margin-bottom: 20px;
+      display: block;
+      border-radius: 8px;
+    }
+    .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 16px;
@@ -135,123 +62,121 @@
       border-radius: 8px;
       object-fit: cover;
       display: block;
+      cursor: pointer;
     }
-  .lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  display: none;
-}
-.lightbox img {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 8px;
-}
-.lightbox.active {
-  display: flex;
-  animation: fadeIn 0.3s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.language-switcher-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-}
-.language-switcher {
-  position: relative;
-  cursor: pointer;
-  font-size: 24px;
-  user-select: none;
-}
-.language-options {
-  display: none;
-  position: absolute;
-  top: 30px;
-  right: 0;
-  background-color: #111;
-  border: 1px solid #333;
-  border-radius: 6px;
-  padding: 0.5rem;
-  text-align: right;
-}
-.language-switcher:hover .language-options {
-  display: block;
-}
-.language-options a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  margin: 5px 0;
-}
-.language-options a:hover {
-  color: #999;
-}
-</style>
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+    }
+    .lightbox.active {
+      display: flex;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .language-switcher-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .language-switcher {
+      position: relative;
+      cursor: pointer;
+      font-size: 24px;
+      user-select: none;
+    }
+    .language-options {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      background-color: #111;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 0.5rem;
+      text-align: right;
+    }
+    .language-switcher:hover .language-options {
+      display: block;
+    }
+    .language-options a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 5px 0;
+    }
+    .language-options a:hover {
+      color: #999;
+    }
+    @media screen and (max-width: 768px) {
+      iframe {
+        height: 240px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="language-switcher-container">
-  <div class="language-switcher">
-    🌐
-    <div class="language-options">
-      <a href="#">🇬🇧 EN</a>
-      <a href="#">🇵🇱 PL</a>
-      <a href="#">🇩🇪 DE</a>
+    <div class="language-switcher">
+      🌐
+      <div class="language-options">
+        <a href="#">🇬🇧 EN</a>
+        <a href="#">🇵🇱 PL</a>
+        <a href="#">🇩🇪 DE</a>
+      </div>
     </div>
   </div>
-</div>
-  </div>
-</div>
-  </div>
-
   <main>
-    <section class="section videos" id="films">
-  <h2>🎬 Selected Works</h2>
-  <div style="text-align: center;">
-    <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/p3b10w9Ona4?si=x1vmZYcSMnGsQps0" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/7tlcSo3khSU?si=qPwAjp5-0rgCUBWC" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen></iframe>
-  </div>
-</section>
+    <section class="section" id="films">
+      <h2>🎬 Selected Works</h2>
+      <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/p3b10w9Ona4?si=x1vmZYcSMnGsQps0" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/7tlcSo3khSU?si=qPwAjp5-0rgCUBWC" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen></iframe>
+    </section>
 
     <section class="section" id="upcoming">
       <h2>🎞️ Upcoming</h2>
-      <img src="_plakat.jpg" alt="Under the Same Sky Poster" style="width:100%; max-width: 600px; border-radius: 8px;" />
+      <img src="_plakat.jpg" alt="Under the Same Sky Poster" style="width:100%; max-width: 600px; border-radius: 8px; display: block; margin: 0 auto 20px;" />
       <p><strong>Under the Same Sky</strong> – Kacper is currently working on a new film that delves into resilience, identity, and everyday life under pressure. Shot across Ukraine, it combines documentary realism with poetic imagery. Release planned for 2025.</p>
     </section>
 
     <section class="section" id="about">
       <h2>👤 About Me</h2>
       <p>Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
-
       <h3>🗺️ Places I've Filmed</h3>
-      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px;" allowfullscreen loading="lazy"></iframe>
     </section>
 
     <section class="section" id="gallery">
-  <h2>📸 Gallery</h2>
-  <div class="gallery-grid">
-    <img src="R1-08878-0004[1].jpg" alt="Gallery image 1" />
-    <img src="R1-08878-0015[1].jpg" alt="Gallery image 2" />
-    <img src="R1-08878-0023[1].jpg" alt="Gallery image 3" />
-    <img src="R1-08878-0024[1].jpg" alt="Gallery image 4" />
-    <img src="R1-08880-002A[1].jpg" alt="Gallery image 5" />
-    <img src="R1-08880-016A[1].jpg" alt="Gallery image 6" />
-  </div>
-</section>
+      <h2>📸 Gallery</h2>
+      <div class="gallery-grid">
+        <img src="R1-08878-0004[1].jpg" alt="Gallery image 1" />
+        <img src="R1-08878-0015[1].jpg" alt="Gallery image 2" />
+        <img src="R1-08878-0023[1].jpg" alt="Gallery image 3" />
+        <img src="R1-08878-0024[1].jpg" alt="Gallery image 4" />
+        <img src="R1-08880-002A[1].jpg" alt="Gallery image 5" />
+        <img src="R1-08880-016A[1].jpg" alt="Gallery image 6" />
+      </div>
+    </section>
 
     <section class="section contact" id="contact">
       <h2>📬 Contact</h2>
@@ -259,37 +184,29 @@
       <p>Instagram: <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
     </section>
     <div class="lightbox" id="lightbox">
-    <img src="" alt="Expanded image" />
-  </div>
-</main>
-
+      <img src="" alt="Expanded image" />
+    </div>
+  </main>
   <script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section').forEach(section => observer.observe(section));
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('.gallery-grid img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+      });
     });
-  }, {
-    threshold: 0.1
-  });
-
-  document.querySelectorAll('.section').forEach(section => {
-    observer.observe(section);
-  });
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = lightbox.querySelector('img');
-
-  document.querySelectorAll('.gallery-grid img').forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.classList.add('active');
-      lightboxImg.src = img.src;
-    });
-  });
-
-  lightbox.addEventListener('click', () => {
-    lightbox.classList.remove('active');
-  });
-</script>
+    lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+  </script>
 </body>
 </html>
