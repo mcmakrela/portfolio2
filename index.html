@@ -6,26 +6,28 @@
     <title>videouberwacht</title>
     <style>
       body {
-        margin: 0;
-        font-family: 'Helvetica Neue', sans-serif;
-        background-color: #000;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        max-width: 100vw;
-        overflow-x: hidden;
-      }
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
       aside {
-        background-color: #111;
-        border-bottom: 1px solid #333;
-        width: 100%;
-        padding: 1rem;
-        box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
+  background-color: #111;
+  border-bottom: 1px solid #333;
+  width: 100%;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
       aside img {
         width: 50px;
       }
@@ -72,8 +74,10 @@
         margin: 0.2rem;
       }
       main {
-        padding: 2rem 1rem;
-      }
+  padding: 2rem 1rem;
+  max-width: 100%;
+  overflow-x: hidden;
+}
       .section {
         max-width: 900px;
         margin: 0 auto 3rem auto;
@@ -221,8 +225,9 @@
         document.getElementById("collabText").innerText = translations[lang].collabText;
       }
       function toggleLanguageMenu() {
-        document.querySelector('.language-switcher-container').classList.toggle('active');
-      }
+  const menu = document.querySelector('.language-switcher-container');
+  menu.classList.toggle('active');
+}
     </script>
   </head>
   <body onload="setLanguage('en')">
@@ -238,7 +243,7 @@
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div class="language-switcher-container">
+      <div class="language-switcher-container" style="position: relative;">
   <button class="language-toggle" onclick="toggleLanguageMenu()">🌐</button>
         <div class="language-options">
           <button onclick="setLanguage('en')">🇬🇧</button>
@@ -314,7 +319,12 @@
 </div>
       </section>
 
-      <section class="section contact" id="contact">
+      <section class="section" id="upcoming">
+  <h2>Upcoming</h2>
+  <p>Kacper is currently working on a new film exploring the intersections of memory, displacement, and urban transformation. The project is in post-production and will premiere in 2025.</p>
+</section>
+
+<section class="section contact" id="contact">
         <h2 id="contactTitle">Contact</h2>
         <p><span id="emailLabel">Email:</span> <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
         <p><span id="instagramLabel">Instagram:</span> <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
@@ -323,10 +333,7 @@
       <footer>
         &copy; 2025 videouberwacht. All rights reserved.
       </footer>
-    <section class="section" id="upcoming">
-  <h2>Upcoming</h2>
-  <p>Kacper is currently working on a new film exploring the intersections of memory, displacement, and urban transformation. The project is in post-production and will premiere in 2025.</p>
-</section>
+    
 
 </main>
   </body>
