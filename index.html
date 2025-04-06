@@ -157,7 +157,7 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 4px;
+      gap: 16px;
       justify-items: center;
       align-items: center;
     }
@@ -211,45 +211,43 @@
   </div>
   <main>
     <section class="section" id="films">
-      <h2>🎬 Selected Works</h2>
-      <div style="margin: 0 auto; max-width: 960px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-  <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
-  <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
-  <iframe src="https://www.youtube.com/embed/p3b10w9Ona4?si=x1vmZYcSMnGsQps0" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
-  <iframe src="https://www.youtube.com/embed/7tlcSo3khSU?si=qPwAjp5-0rgCUBWC" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
-  <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
-  <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
-</div>
-      <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/p3b10w9Ona4?si=x1vmZYcSMnGsQps0" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/7tlcSo3khSU?si=qPwAjp5-0rgCUBWC" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen></iframe>
-    </section>
+  <h2>🎬 Selected Works</h2>
+  <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/p3b10w9Ona4?si=x1vmZYcSMnGsQps0" frameborder="0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/7tlcSo3khSU?si=qPwAjp5-0rgCUBWC" frameborder="0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/oGLswQXQXQzQE" frameborder="0" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen></iframe>
+</section>
 
     <section class="section" id="upcoming">
       <h2>🎞️ Upcoming</h2>
-      <img src="_plakat.jpg" alt="Under the Same Sky Poster" style="width:100%; max-width: 600px; border-radius: 8px; display: block; margin: 0 auto 20px;" />
+      <img src="_plakat.jpg" alt="Under the Same Sky Poster" style="width: 100%; max-width: 300px; border-radius: 8px; display: block; margin: 0 auto 20px;" />
       <p><strong>Under the Same Sky</strong> – Kacper is currently working on a new film that delves into resilience, identity, and everyday life under pressure. Shot across Ukraine, it combines documentary realism with poetic imagery. Release planned for 2025.</p>
     </section>
 
     <section class="section" id="about">
       <h2>👤 About Me</h2>
       <p>Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
-      <h3>🗺️ Places I've Filmed</h3>
-      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px;" allowfullscreen loading="lazy"></iframe>
+      </section>
+
+<section class="section" id="map">
+  <h2 style="text-align: center;">🗺️ Places I've Filmed</h2>
+  <div style="display: flex; justify-content: center;">
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+  </div></iframe>
     </section>
 
     <section class="section" id="gallery">
   <h2>📸 Gallery</h2>
   <div class="gallery-grid" id="galleryGrid">
-    <img src="R1-08878-0023[1].jpg" alt="Gallery image" />
-    <img src="R1-08878-0024[1].jpg" alt="Gallery image" />
-    <img src="R1-08880-016A[1].jpg" alt="Gallery image" />
-    <img src="R1-08878-0015[1].jpg" alt="Gallery image" />
-    <img src="R1-08878-0004[1].jpg" alt="Gallery image" />
-    <img src="R1-08880-002A[1].jpg" alt="Gallery image" />
-  </div>
+  <img src="R1-08878-0004[1].jpg" alt="Gallery image" />
+  <img src="R1-08878-0015[1].jpg" alt="Gallery image" />
+  <img src="R1-08878-0023[1].jpg" alt="Gallery image" />
+  <img src="R1-08878-0024[1].jpg" alt="Gallery image" />
+  <img src="R1-08880-002A[1].jpg" alt="Gallery image" />
+  <img src="R1-08880-016A[1].jpg" alt="Gallery image" />
+</div>
 </section>
 
     <section class="section contact" id="contact">
@@ -292,20 +290,22 @@
 
   const galleryGrid = document.getElementById("galleryGrid");
 
-  setInterval(() => {
-    const randomIndex = Math.floor(Math.random() * allImages.length);
-    const randomImage = allImages[randomIndex];
-    const newImg = document.createElement("img");
-    newImg.src = randomImage;
-    newImg.alt = "Gallery image";
-    newImg.style.opacity = 0;
-    newImg.style.transition = "opacity 0.5s ease";
-    galleryGrid.removeChild(galleryGrid.firstElementChild);
-    galleryGrid.appendChild(newImg);
-    requestAnimationFrame(() => {
-      newImg.style.opacity = 1;
-    });
-  }, 5000);
+  let currentIndex = 6;
+setInterval(() => {
+  const newImg = document.createElement("img");
+  newImg.src = allImages[currentIndex % allImages.length];
+  newImg.alt = "Gallery image";
+  newImg.style.opacity = 0;
+  newImg.style.transition = "opacity 0.5s ease";
+
+  const removeIndex = Math.floor(Math.random() * galleryGrid.children.length);
+  galleryGrid.replaceChild(newImg, galleryGrid.children[removeIndex]);
+
+  requestAnimationFrame(() => {
+    newImg.style.opacity = 1;
+  });
+  currentIndex++;
+}, 5000);
 </script>
 </body>
 </html>
