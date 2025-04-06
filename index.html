@@ -211,6 +211,8 @@ iframe {
 .slide-image {
   display: none;
   width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
   border-radius: 8px;
 }
 .slideshow-controls {
@@ -303,6 +305,19 @@ function showSlides(n) {
   }
   slides[slideIndex].style.display = "block";
 }
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  const slides = document.getElementsByClassName("slide-image");
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1;}
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 4000); // Change image every 4 seconds
+}
 </script>
   </head>
   <body onload="setLanguage('en')">
@@ -329,16 +344,16 @@ function showSlides(n) {
     </aside>
 
     <main>
-      <section class="section" id="about">
-        <h2 id="aboutTitle">About Me</h2>
-        <p id="aboutText">Kacper Wissuwa is a filmmaker and visual storyteller blending reality and aesthetics. Through documentaries, music videos, and experimental forms, he explores human behavior, culture, and the hidden layers of urban life. His work combines raw intimacy with crafted cinematic imagery.</p>
-      
+      <section class="section" id="about" style="display: none;">
+  <h2 id="aboutTitle">About Me</h2>
+  <p id="aboutText">Kacper Wissuwa is a filmmaker and visual storyteller blending reality and aesthetics. Through documentaries, music videos, and experimental forms, he explores human behavior, culture, and the hidden layers of urban life. His work combines raw intimacy with crafted cinematic imagery.</p>
 
-<section class="section" id="map">
-  <h2 id="mapTitle">Places I've Filmed</h2>
-  <div style="width: 100%; height: 400px; margin-bottom: 2rem;">
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="100%" style="border:0; border-radius: 8px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
+  <section class="section" id="map">
+    <h2 id="mapTitle">Places I've Filmed</h2>
+    <div style="width: 100%; height: 400px; margin-bottom: 2rem;">
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="100%" style="border:0; border-radius: 8px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
 </section>
 
 </section>
@@ -368,10 +383,7 @@ function showSlides(n) {
     <img class="slide-image" src="R1-03913-0021.JPG" alt="film still" />
     <img class="slide-image" src="R1-03913-0024.JPG" alt="film still 2" />
   </div>
-  <div class="slideshow-controls">
-    <button onclick="plusSlides(-1)">&#10094;</button>
-    <button onclick="plusSlides(1)">&#10095;</button>
-  </div>
+  
 </section>
 
       <section class="section" id="upcoming">
