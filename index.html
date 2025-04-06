@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>videouberwacht</title>
   <style>
+    html {
+      background-color: #000;
+    }
     .gallery-grid img:nth-child(3n) {
       grid-column: span 2;
     }
@@ -192,6 +195,13 @@
 </div>
 
 <main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('visible');
+      });
+    });
+  </script>
   <nav>
     <img src="logo_orange.svg" alt="logo" style="height: 36px; margin-right: 10px;" />
     <span style="font-size: 1.2rem; color: white;">videouberwacht</span>
@@ -209,7 +219,7 @@
 
   <section class="section" id="upcoming">
     <h2>🎞️ Upcoming</h2>
-    <img src="_plakat.jpg" alt="Under the Same Sky Poster" />
+    <img src="_plakat.jpg" alt="Under the Same Sky Poster" style="max-width: 260px; width: 100%; display: block; margin: 0 auto 1rem;" />
     <p style="text-align: center;">Kacper is currently working on a new film <strong>"Under the Same Sky"</strong>, shot across Ukraine. Premiering 2025.</p>
   </section>
 
