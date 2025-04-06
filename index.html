@@ -1,407 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>videouberwacht</title>
-    <style>
-      body {
-  margin: 0;
-  font-family: 'Helvetica Neue', sans-serif;
-  background-color: #000;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-      aside {
-  background-color: #111;
-  border-bottom: 1px solid #333;
-  width: 100%;
-  padding: 1rem;
-  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  position: relative;
-}
-      aside img {
-        width: 50px;
-      }
-      aside h1 {
-  font-size: 1.2rem;
-  margin: 0 1rem;
-  white-space: nowrap;
-}
-      nav {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-      nav a {
-        color: #ccc;
-        text-decoration: none;
-      }
-      .language-switcher-container.active .language-options {
-  display: block;
-}
-      .language-toggle {
-        background: none;
-        border: none;
-        font-size: 1.2rem;
-        color: #ccc;
-        cursor: pointer;
-      }
-      .language-options {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: #222;
-  padding: 0.5rem;
-  border-radius: 6px;
-}
-      .language-options button {
-        background: #222;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        border-radius: 4px;
-        padding: 0.3rem 0.6rem;
-        margin: 0.2rem;
-      }
-      main {
-  padding: 2rem 1rem;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-      .section {
-        max-width: 900px;
-        margin: 0 auto 3rem auto;
-      }
-      .videos iframe {
-        width: 100%;
-        height: 315px;
-        margin-bottom: 2rem;
-      }
-      .gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-      }
-      .gallery img {
-        width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-      }
-      .contact a {
-        color: #66f;
-        text-decoration: underline;
-      }
-      footer {
-        font-size: 0.9rem;
-        color: #777;
-        text-align: center;
-        padding: 2rem 0;
-      }
-      @media (min-width: 768px) {
-        aside {
-          flex-direction: row;
-        }
-      }
-      .gallery img {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .gallery img:hover {
-    transform: scale(1.04);
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
-  }
-  .videos iframe {
-    transition: transform 0.3s ease;
-  }
-  .videos iframe:hover {
-    transform: scale(1.02);
-  }
-  nav a {
-    position: relative;
-  }
-  nav a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: #fff;
-    transition: width 0.3s ease;
-  }
-  nav a:hover::after {
-    width: 100%;
-  }
-  .gallery img:active {
-    transform: scale(1.02);
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
-  }
-  .videos iframe:active {
-    transform: scale(1.01);
-  }
-  @media (hover: none) and (pointer: coarse) {
-    .gallery img:active {
-      transform: scale(1.03);
-      box-shadow: 0 6px 14px rgba(255, 255, 255, 0.15);
-    }
-    .videos iframe:active {
-      transform: scale(1.015);
-    }
-    nav a:active {
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>videouberwacht</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #000;
       color: #fff;
-    }
-    nav a:active::after {
       width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
     }
-    .language-options button:active {
-      background-color: #444;
+    main {
+      padding: 20px;
     }
-  }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html, body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-iframe {
-  max-width: 100%;
-}
-
-.gallery {
-  padding: 1rem 0;
-  display: block;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.gallery-grid img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.slideshow-container {
-  position: relative;
-  max-width: 900px;
-  margin: auto;
-  overflow: hidden;
-}
-.slide-image {
-  display: none;
-  width: 100%;
-  max-height: 80vh;
-  object-fit: contain;
-  border-radius: 8px;
-}
-.slideshow-controls {
-  text-align: center;
-  margin-top: 1rem;
-}
-.slideshow-controls button {
-  background-color: #222;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin: 0 0.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.section {
-  max-width: 900px;
-  margin: 0 auto 5rem auto;
-}
-</style>
-    <script>
-      const translations = {
-        map: "Places I've Filmed",
-        en: {
-          map: "Places I've Filmed",
-          about: "About Me",
-          aboutText: "Kacper Wissuwa is a filmmaker and visual storyteller who focuses on capturing authentic stories through a clear and expressive style. His work spans documentary, music video, and experimental formats, often highlighting overlooked people and places. He also produces commercials and branded content, combining narrative clarity with strong visual identity.",
-          films: "Selected Works",
-          gallery: "Gallery",
-          contact: "Contact",
-          email: "Email:",
-          instagram: "Instagram:",
-          collab: "Collaboration",
-          collabText: "Whether you're an artist, NGO, label or brand—Kacper brings visual substance to unique collaborations. His lens seeks emotion, atmosphere and authenticity in every frame."
-        },
-        de: {
-          map: "Orte, an denen ich gedreht habe",
-          about: "Über mich",
-          aboutText: "Kacper Wissuwa ist ein visueller Erzähler, der Realität mit Ästhetik verbindet. Mit Dokumentationen, Musikvideos und experimentellen Formen erforscht er menschliches Verhalten, Kultur und die versteckten Schichten urbanen Lebens. Seine Arbeiten sind eine Mischung aus intimer Nähe und cineastischer Bildsprache.",
-          films: "Ausgewählte Werke",
-          gallery: "Galerie",
-          contact: "Kontakt",
-          email: "E-Mail:",
-          instagram: "Instagram:",
-          collab: "Zusammenarbeit",
-          collabText: "Lass uns Geschichten erzählen, die zählen. Kacper arbeitet mit Künstlern, NGOs, Kollektiven und Marken zusammen, die auf der Suche nach einer visuellen Identität sind – durch Atmosphäre, Narration oder klare Ästhetik."
-        },
-        pl: {
-          map: "Miejsca, w których kręciłem",
-          about: "O mnie",
-          aboutText: "Kacper Wissuwa to twórca filmowy i obserwator świata, który łączy dokument z estetyką kina. W swoich projektach – od dokumentów po teledyski – analizuje kulturę, zachowania i społeczne napięcia. Łączy emocjonalny realizm z obrazową kompozycją.",
-          films: "Wybrane filmy",
-          gallery: "Galeria",
-          contact: "Kontakt",
-          email: "E-mail:",
-          instagram: "Instagram:",
-          collab: "Współpraca",
-          collabText: "Zróbmy coś razem. Kacper współpracuje z artystami, organizacjami, kolektywami i markami, które chcą opowiedzieć historie – prawdziwe, estetyczne, intensywne."
-        }
-      };
-      function setLanguage(lang) {
-        document.getElementById("mapTitle").innerText = translations[lang].map;
-        document.getElementById("aboutTitle").innerText = translations[lang].about;
-        document.getElementById("aboutText").innerText = translations[lang].aboutText;
-        document.getElementById("filmsTitle").innerText = translations[lang].films;
-        document.getElementById("galleryTitle").innerText = translations[lang].gallery;
-        document.getElementById("contactTitle").innerText = translations[lang].contact;
-        document.getElementById("emailLabel").innerText = translations[lang].email;
-        document.getElementById("instagramLabel").innerText = translations[lang].instagram;
-        document.getElementById("collabTitle").innerText = translations[lang].collab;
-        document.getElementById("collabText").innerText = translations[lang].collabText;
+    .section {
+      margin-bottom: 60px;
+    }
+    h2 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+    iframe {
+      width: 100%;
+      max-width: 720px;
+      height: 405px;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      margin: auto;
+      text-align: center;
+    }
+    .slide-image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    #upcoming img {
+      display: block;
+      margin: 0 auto 20px;
+    }
+    @media screen and (max-width: 768px) {
+      iframe {
+        height: 240px;
       }
-      function toggleLanguageMenu() {
-  const options = document.querySelector('.language-options');
-  options.style.display = (options.style.display === 'block') ? 'none' : 'block';
-}
+      .slide-image {
+        height: auto;
+        max-height: 80vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="section videos" id="films">
+      <h2>Selected Works</h2>
+      <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
+    </section>
+
+    <section class="section" id="about">
+      <h2>About Me</h2>
+      <p>Kacper Wissuwa is a filmmaker and visual storyteller. His work includes not only creative documentaries, but also commercials and branded content. He explores social issues, subcultures, and personal stories—always with a focus on genuine emotion and strong visuals.</p>
+
+      <h3>Places I've Filmed</h3>
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <section class="section" id="gallery">
+      <h2>Gallery</h2>
+      <div class="slideshow-container">
+        <img class="slide-image" src="R1-08878-0004[1].jpg" />
+        <img class="slide-image" src="R1-08878-0015[1].jpg" />
+        <img class="slide-image" src="R1-08878-0023[1].jpg" />
+        <img class="slide-image" src="R1-08878-0024[1].jpg" />
+        <img class="slide-image" src="R1-08880-002A[1].jpg" />
+        <img class="slide-image" src="R1-08880-016A[1].jpg" />
+      </div>
+    </section>
+
+    <section class="section" id="upcoming">
+      <h2>Upcoming</h2>
+      <img src="_plakat.jpg" alt="Under the Same Sky Poster" style="width:100%; max-width: 600px; border-radius: 8px;" />
+      <p>Kacper is currently working on a new film titled <strong>"Under the Same Sky"</strong>. The project explores themes of resilience, identity, and life in the shadow of conflict. It merges observational documentary with poetic storytelling. Premiering in 2025.</p>
+    </section>
+
+    <section class="section contact" id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+      <p>Instagram: <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
+    </section>
+  </main>
+
+  <script>
     let slideIndex = 0;
-showSlides(slideIndex);
+    showSlides();
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function showSlides(n) {
-  const slides = document.getElementsByClassName("slide-image");
-  if (n >= slides.length) slideIndex = 0;
-  if (n < 0) slideIndex = slides.length - 1;
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex].style.display = "block";
-}
-let slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  const slides = document.getElementsByClassName("slide-image");
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1;}
-  slides[slideIndex - 1].style.display = "block";
-  setTimeout(showSlides, 4000); // Change image every 4 seconds
-}
-</script>
-  </head>
-  <body onload="setLanguage('en')">
-    <aside>
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <img src="logo.png" alt="videouberwacht Logo" />
-        <h1>videouberwacht</h1>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#films">Films</a>
-        <a href="#collab">Collab</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="language-switcher-container" style="position: relative;">
-  <button class="language-toggle" onclick="toggleLanguageMenu()">🌐</button>
-        <div class="language-options">
-          <button onclick="setLanguage('en')">🇬🇧</button>
-          <button onclick="setLanguage('de')">🇩🇪</button>
-          <button onclick="setLanguage('pl')">🇵🇱</button>
-        </div>
-      </div>
-    </aside>
-
-    <main>
-      <section class="section" id="about" style="display: none;">
-  <h2 id="aboutTitle">About Me</h2>
-  <p id="aboutText">Kacper Wissuwa is a filmmaker and visual storyteller blending reality and aesthetics. Through documentaries, music videos, and experimental forms, he explores human behavior, culture, and the hidden layers of urban life. His work combines raw intimacy with crafted cinematic imagery.</p>
-
-  <section class="section" id="map">
-    <h2 id="mapTitle">Places I've Filmed</h2>
-    <div style="width: 100%; height: 400px; margin-bottom: 2rem;">
-      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="100%" style="border:0; border-radius: 8px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </section>
-</section>
-
-</section>
-
-      <section class="section videos" id="films">
-        <h2 id="filmsTitle">Selected Works</h2>
-        <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen></iframe>
-      </section>
-
-      <section class="section" id="collab">
-        <h2 id="collabTitle">Collaboration</h2>
-        <p id="collabText">Let’s collaborate on stories that matter. Kacper works with artists, NGOs, collectives, and brands seeking a meaningful visual identity—be it through narrative, atmosphere, or bold aesthetics.</p>
-      </section>
-
-      <section class="section gallery" id="gallery">
-  <h2 id="galleryTitle">Gallery</h2>
-  <div class="slideshow-container">
-    <img class="slide-image" src="DSC06467.jpg" alt="scene 1" />
-    <img class="slide-image" src="DSC06575.jpg" alt="scene 2" />
-    <img class="slide-image" src="DSC06931.jpg" alt="scene 3" />
-    <img class="slide-image" src="DSC06839.jpg" alt="scene 4" />
-    <img class="slide-image" src="R1-03913-0021.JPG" alt="film still" />
-    <img class="slide-image" src="R1-03913-0024.JPG" alt="film still 2" />
-  </div>
-  
-</section>
-
-      <section class="section" id="upcoming">
-  <h2>Upcoming</h2>
-  <p>Kacper is currently working on a new film exploring the intersections of memory, displacement, and urban transformation. The project is in post-production and will premiere in 2025.</p>
-</section>
-
-<section class="section contact" id="contact">
-        <h2 id="contactTitle">Contact</h2>
-        <p><span id="emailLabel">Email:</span> <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
-        <p><span id="instagramLabel">Instagram:</span> <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
-      </section>
-
-      <footer>
-        &copy; 2025 videouberwacht. All rights reserved.
-      </footer>
-    
-
-</main>
-  </body>
+    function showSlides() {
+      const slides = document.getElementsByClassName("slide-image");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1;}
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 4000);
+    }
+  </script>
+</body>
 </html>
