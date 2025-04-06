@@ -190,9 +190,9 @@
 </style>
 </head>
 <body>
-  <nav>
-    <img src="logo_orange.svg" alt="videouberwacht logo" style="height: 40px; vertical-align: middle; margin-right: 1rem; float: left;" />
-    <span style="float: left; font-weight: bold; font-size: 1.2rem; margin-right: 2rem; line-height: 40px;">videouberwacht</span>
+  <nav style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem;">
+  <img src="logo_orange.svg" alt="videouberwacht logo" style="height: 40px;" />
+  <span style="font-weight: bold; font-size: 1.2rem; line-height: 40px;">videouberwacht</span>
     <a href="#films">🎬 Films</a>
     <a href="#upcoming">🎞️ Upcoming</a>
     <a href="#about">👤 About</a>
@@ -202,17 +202,24 @@
   <div class="language-switcher-container">
     <div class="language-switcher">
       🌐
-      <div class="language-options">
-        <a href="#">🇬🇧 EN</a>
-        <a href="#">🇵🇱 PL</a>
-        <a href="#">🇩🇪 DE</a>
-      </div>
+      <div class="language-options" style="pointer-events: auto;">
+  <a href="#">🇬🇧</a>
+  <a href="#">🇵🇱</a>
+  <a href="#">🇩🇪</a>
+</div>
     </div>
   </div>
   <main>
     <section class="section" id="films">
       <h2>🎬 Selected Works</h2>
-      <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
+      <div style="margin: 0 auto; max-width: 960px; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+  <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
+  <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
+  <iframe src="https://www.youtube.com/embed/p3b10w9Ona4?si=x1vmZYcSMnGsQps0" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
+  <iframe src="https://www.youtube.com/embed/7tlcSo3khSU?si=qPwAjp5-0rgCUBWC" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
+  <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
+  <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen style="flex: 1 1 300px; height: 200px; max-width: 300px;"></iframe>
+</div>
       <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
       <iframe src="https://www.youtube.com/embed/p3b10w9Ona4?si=x1vmZYcSMnGsQps0" frameborder="0" allowfullscreen></iframe>
       <iframe src="https://www.youtube.com/embed/7tlcSo3khSU?si=qPwAjp5-0rgCUBWC" frameborder="0" allowfullscreen></iframe>
@@ -234,16 +241,16 @@
     </section>
 
     <section class="section" id="gallery">
-      <h2>📸 Gallery</h2>
-      <div class="gallery-grid">
-  <img src="R1-08878-0023[1].jpg" alt="Gallery image 3" />
-  <img src="R1-08878-0024[1].jpg" alt="Gallery image 4" />
-  <img src="R1-08880-016A[1].jpg" alt="Gallery image 6" />
-  <img src="R1-08878-0015[1].jpg" alt="Gallery image 2" />
-  <img src="R1-08878-0004[1].jpg" alt="Gallery image 1" />
-  <img src="R1-08880-002A[1].jpg" alt="Gallery image 5" />
-</div>
-    </section>
+  <h2>📸 Gallery</h2>
+  <div class="gallery-grid" id="galleryGrid">
+    <img src="R1-08878-0023[1].jpg" alt="Gallery image" />
+    <img src="R1-08878-0024[1].jpg" alt="Gallery image" />
+    <img src="R1-08880-016A[1].jpg" alt="Gallery image" />
+    <img src="R1-08878-0015[1].jpg" alt="Gallery image" />
+    <img src="R1-08878-0004[1].jpg" alt="Gallery image" />
+    <img src="R1-08880-002A[1].jpg" alt="Gallery image" />
+  </div>
+</section>
 
     <section class="section contact" id="contact">
       <h2>📬 Contact</h2>
@@ -274,6 +281,31 @@
       });
     });
     lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
-  </script>
+    const allImages = [
+    "R1-08878-0004[1].jpg",
+    "R1-08878-0015[1].jpg",
+    "R1-08878-0023[1].jpg",
+    "R1-08878-0024[1].jpg",
+    "R1-08880-002A[1].jpg",
+    "R1-08880-016A[1].jpg"
+  ];
+
+  const galleryGrid = document.getElementById("galleryGrid");
+
+  setInterval(() => {
+    const randomIndex = Math.floor(Math.random() * allImages.length);
+    const randomImage = allImages[randomIndex];
+    const newImg = document.createElement("img");
+    newImg.src = randomImage;
+    newImg.alt = "Gallery image";
+    newImg.style.opacity = 0;
+    newImg.style.transition = "opacity 0.5s ease";
+    galleryGrid.removeChild(galleryGrid.firstElementChild);
+    galleryGrid.appendChild(newImg);
+    requestAnimationFrame(() => {
+      newImg.style.opacity = 1;
+    });
+  }, 5000);
+</script>
 </body>
 </html>
