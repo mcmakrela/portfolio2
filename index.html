@@ -30,9 +30,10 @@
         width: 50px;
       }
       aside h1 {
-        font-size: 1.2rem;
-        margin: 0 1rem;
-      }
+  font-size: 1.2rem;
+  margin: 0 1rem;
+  white-space: nowrap;
+}
       nav {
         display: flex;
         gap: 1rem;
@@ -42,13 +43,9 @@
         color: #ccc;
         text-decoration: none;
       }
-      .language-switcher-container {
-        text-align: right;
-        margin-top: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-      }
+      .language-switcher-container.active .language-options {
+  display: block;
+}
       .language-toggle {
         background: none;
         border: none;
@@ -57,9 +54,14 @@
         cursor: pointer;
       }
       .language-options {
-        display: block;
-        margin-top: 0.3rem;
-      }
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #222;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
       .language-options button {
         background: #222;
         border: none;
@@ -160,6 +162,11 @@
       background-color: #444;
     }
   }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
 </style>
     <script>
       const translations = {
@@ -232,6 +239,7 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="language-switcher-container">
+  <button class="language-toggle" onclick="toggleLanguageMenu()">🌐</button>
         <div class="language-options">
           <button onclick="setLanguage('en')">🇬🇧</button>
           <button onclick="setLanguage('de')">🇩🇪</button>
@@ -244,10 +252,7 @@
       <section class="section" id="about">
         <h2 id="aboutTitle">About Me</h2>
         <p id="aboutText">Kacper Wissuwa is a filmmaker and visual storyteller blending reality and aesthetics. Through documentaries, music videos, and experimental forms, he explores human behavior, culture, and the hidden layers of urban life. His work combines raw intimacy with crafted cinematic imagery.</p>
-      <section class="section" id="upcoming">
-  <h2>Upcoming</h2>
-  <p>Kacper is currently working on a new film exploring the intersections of memory, displacement, and urban transformation. The project is in post-production and will premiere in 2025.</p>
-</section>
+      
 
 <section class="section" id="map">
   <h2 id="mapTitle">Places I've Filmed</h2>
@@ -276,35 +281,37 @@
       <section class="section gallery" id="gallery">
         <h2 id="galleryTitle">Gallery</h2>
         <div class="gallery">
-          <img src="R1-08878-0024.TIF" alt="new photo 1" />
-          <img src="R1-08878-0023.TIF" alt="new photo 2" />
-          <img src="R1-08878-0015.TIF" alt="new photo 3" />
-          <img src="R1-08878-0004.TIF" alt="new photo 4" />
-          <img src="R1-08880-016A.TIF" alt="new photo 5" />
-          <img src="R1-08880-002A.TIF" alt="new photo 6" />
-          <img src="DSC06467.jpg" alt="scene 1" />
-          <img src="DSC06575.jpg" alt="scene 2" />
-          <img src="DSC06931.jpg" alt="scene 3" />
-          <img src="DSC06839.jpg" alt="scene 4" />
-          <img src="R1-03913-0021.JPG" alt="film still" />
-          <img src="R1-03913-0024.JPG" alt="film still 2" />
-          <img src="R1-03913-0035.JPG" alt="night colors" />
-          <img src="R1-09725-0008.JPG" alt="portrait" />
-          <img src="2-1530wissewa1231.jpg" alt="urban 1" />
-          <img src="8-8186kacper727.jpg" alt="urban 2" />
-          <img src="11-1530wissewa1230.jpg" alt="block 1" />
-          <img src="11-1836kacp6403.jpg" alt="block 2" />
-          <img src="12-1836kacp6403.jpg" alt="facade" />
-          <img src="15-1530wissewa1231.jpg" alt="skyline" />
-          <img src="17-1836kacp6403.jpg" alt="texture" />
-          <img src="18-1530wissewa1230.jpg" alt="storefront" />
-          <img src="30-1530wissewa1230.jpg" alt="light" />
-          <img src="31-1530wissewa1231.jpg" alt="angles" />
-          <img src="31-1835kaeper6317.jpg" alt="scene" />
-          <img src="35-1836kacp6403.jpg" alt="rhythm" />
-          <img src="36-1530wissewa1230.jpg" alt="detail" />
-          <img src="R1-02155-004A.jpg" alt="archival" />
-        </div>
+  <div class="gallery-grid">
+    <img src="R1-08878-0024.TIF" alt="new photo 1" />
+    <img src="R1-08878-0023.TIF" alt="new photo 2" />
+    <img src="R1-08878-0015.TIF" alt="new photo 3" />
+    <img src="R1-08878-0004.TIF" alt="new photo 4" />
+    <img src="R1-08880-016A.TIF" alt="new photo 5" />
+    <img src="R1-08880-002A.TIF" alt="new photo 6" />
+    <img src="DSC06467.jpg" alt="scene 1" />
+    <img src="DSC06575.jpg" alt="scene 2" />
+    <img src="DSC06931.jpg" alt="scene 3" />
+    <img src="DSC06839.jpg" alt="scene 4" />
+    <img src="R1-03913-0021.JPG" alt="film still" />
+    <img src="R1-03913-0024.JPG" alt="film still 2" />
+    <img src="R1-03913-0035.JPG" alt="night colors" />
+    <img src="R1-09725-0008.JPG" alt="portrait" />
+    <img src="2-1530wissewa1231.jpg" alt="urban 1" />
+    <img src="8-8186kacper727.jpg" alt="urban 2" />
+    <img src="11-1530wissewa1230.jpg" alt="block 1" />
+    <img src="11-1836kacp6403.jpg" alt="block 2" />
+    <img src="12-1836kacp6403.jpg" alt="facade" />
+    <img src="15-1530wissewa1231.jpg" alt="skyline" />
+    <img src="17-1836kacp6403.jpg" alt="texture" />
+    <img src="18-1530wissewa1230.jpg" alt="storefront" />
+    <img src="30-1530wissewa1230.jpg" alt="light" />
+    <img src="31-1530wissewa1231.jpg" alt="angles" />
+    <img src="31-1835kaeper6317.jpg" alt="scene" />
+    <img src="35-1836kacp6403.jpg" alt="rhythm" />
+    <img src="36-1530wissewa1230.jpg" alt="detail" />
+    <img src="R1-02155-004A.jpg" alt="archival" />
+  </div>
+</div>
       </section>
 
       <section class="section contact" id="contact">
@@ -316,6 +323,11 @@
       <footer>
         &copy; 2025 videouberwacht. All rights reserved.
       </footer>
-    </main>
+    <section class="section" id="upcoming">
+  <h2>Upcoming</h2>
+  <p>Kacper is currently working on a new film exploring the intersections of memory, displacement, and urban transformation. The project is in post-production and will premiere in 2025.</p>
+</section>
+
+</main>
   </body>
 </html>
