@@ -241,19 +241,26 @@
 </head>
 <body>
 <div id="intro" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; display: flex; align-items: center; justify-content: center; z-index: 9999;">
-  <span style="font-size: 4rem; animation: clap 0.5s ease-in-out 1;">🎬</span>
+  <img src="https://cdn-icons-png.flaticon.com/512/5538/5538020.png" alt="clapper" style="width: 100px; animation: bounceIn 0.4s ease;" />
   <audio id="clapSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0a4a72601f.mp3?filename=clap-sound-8280.mp3" autoplay></audio>
 </div>
 <script>
   window.addEventListener('load', () => {
     const intro = document.getElementById('intro');
     setTimeout(() => {
-      intro.style.transition = 'opacity 1s ease';
+      intro.style.transition = 'opacity 0.8s ease';
       intro.style.opacity = 0;
-      setTimeout(() => intro.remove(), 1000);
-    }, 2000);
+      setTimeout(() => intro.remove(), 800);
+    }, 1000);
   });
 </script>
+<style>
+  @keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+</style>
 <style>
   @keyframes clap {
     0% { transform: scale(0.8); opacity: 0; }
@@ -264,7 +271,7 @@
 <div class="language-switcher-container">
   <div class="language-switcher">
     🌐
-    <div class="language-options" style="left: 0; top: 100%; position: absolute; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 6px;">
+    <div class="language-options" style="left: 0; top: 100%; position: absolute; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 6px;">
       <a href="#" onclick="switchLanguage('en')" style="font-size: 16px; padding: 4px;">🇬🇧</a>
       <a href="#" onclick="switchLanguage('pl')" style="font-size: 16px; padding: 4px;">🇵🇱</a>
       <a href="#" onclick="switchLanguage('de')" style="font-size: 16px; padding: 4px;">🇩🇪</a>
@@ -410,8 +417,11 @@
       block.style.display = block.lang === lang ? '' : 'none';
     });
   }
-  const savedLang = localStorage.getItem('preferredLang') || 'en';
-  switchLanguage(savedLang);
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('preferredLang') || 'en';
+    switchLanguage(savedLang);
+  });
+</script>
 </script>
 </script>
 </script>
