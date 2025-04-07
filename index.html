@@ -246,6 +246,20 @@
 </style>
 </head>
 <body>
+<div id="intro" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; display: flex; align-items: center; justify-content: center; z-index: 9999;">
+  <span style="font-size: 5rem; animation: bounceIn 0.4s ease;">🎬</span>
+  <audio id="clapSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0a4a72601f.mp3?filename=clap-sound-8280.mp3" autoplay></audio>
+</div>
+<script>
+  window.addEventListener('load', () => {
+    const intro = document.getElementById('intro');
+    setTimeout(() => {
+      intro.style.transition = 'opacity 0.8s ease';
+      intro.style.opacity = 0;
+      setTimeout(() => intro.remove(), 800);
+    }, 1000);
+  });
+</script>
 
 <style>
   @keyframes bounceIn {
