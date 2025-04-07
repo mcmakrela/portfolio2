@@ -240,84 +240,81 @@
   </section>
 
   <section id="gallery" class="section">
-    <h2>📸 Galeria</h2>
-    <div class="gallery-grid" id="galleryGrid">
-      <img src="2-1530wissewa1231.jpg" alt="gallery image" />
-      <img src="8-8186kacper727.jpg" alt="gallery image" />
-      <img src="11-1530wissewa1230.jpg" alt="gallery image" />
-      <img src="11-1836kacp6403.jpg" alt="gallery image" />
-      <img src="12-1836kacp6403.jpg" alt="gallery image" />
-      <img src="15-1530wissewa1231.jpg" alt="gallery image" />
-      <img src="17-1836kacp6403.jpg" alt="gallery image" />
-      <img src="18-1530wissewa1230.jpg" alt="gallery image" />
-      <img src="30-1530wissewa1230.jpg" alt="gallery image" />
-      <img src="31-1530wissewa1231.jpg" alt="gallery image" />
-</div>
-<script>
-  const allImages = [
-    "2-1530wissewa1231.jpg","8-8186kacper727.jpg","11-1530wissewa1230.jpg","11-1836kacp6403.jpg","12-1836kacp6403.jpg","15-1530wissewa1231.jpg",
-    "17-1836kacp6403.jpg","18-1530wissewa1230.jpg","30-1530wissewa1230.jpg","31-1530wissewa1231.jpg","31-1835kaeper6317.jpg","35-1836kacp6403.jpg",
-    "36-1530wissewa1230.jpg","DSC06467.jpg","DSC06575.jpg","DSC06839.jpg","DSC06931.jpg","R1-02155-004A.jpg","R1-03913-0021.JPG","R1-03913-0024.JPG",
-    "R1-03913-0035.JPG","R1-08878-0004[1].jpg","R1-08878-0015[1].jpg","R1-08878-0023[1].jpg","R1-08878-0024[1].jpg","R1-08880-002A[1].jpg",
-    "R1-08880-016A[1].jpg"
-  ];
-  const grid = document.getElementById("galleryGrid");
-  let displayed = Array.from(grid.children).map(img => img.src.split('/').pop());
+  <h2>📸 Galeria</h2>
+  <div class="slider-container">
+    <button class="prev" onclick="plusSlides(-1)">❮</button>
+    <div class="slider-wrapper">
+      <img class="gallery-slide" src="2-1530wissewa1231.jpg" alt="gallery image" />
+    </div>
+    <button class="next" onclick="plusSlides(1)">❯</button>
+  </div>
+</section>
 
-  function getRandomNonRepeatingImage(currentlyDisplayed) {
-    const remaining = allImages.filter(img => !currentlyDisplayed.includes(img));
-    return remaining[Math.floor(Math.random() * remaining.length)];
+<style>
+  .slider-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slider-wrapper {
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+  }
+  .gallery-slide {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: opacity 1s ease-in-out;
+  }
+  .prev, .next {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    padding: 0 20px;
+    z-index: 10;
+    transition: color 0.3s;
+  }
+  .prev:hover, .next:hover {
+    color: #f2a365;
+  }
+</style>
+
+<script>
+  const slides = [
+    "2-1530wissewa1231.jpg","8-8186kacper727.jpg","11-1530wissewa1230.jpg","11-1836kacp6403.jpg",
+    "12-1836kacp6403.jpg","15-1530wissewa1231.jpg","17-1836kacp6403.jpg","18-1530wissewa1230.jpg",
+    "30-1530wissewa1230.jpg","31-1530wissewa1231.jpg","31-1835kaeper6317.jpg","35-1836kacp6403.jpg",
+    "36-1530wissewa1230.jpg","DSC06467.jpg","DSC06575.jpg","DSC06839.jpg","DSC06931.jpg",
+    "R1-02155-004A.jpg","R1-03913-0021.JPG","R1-03913-0024.JPG","R1-03913-0035.JPG",
+    "R1-08878-0004[1].jpg","R1-08878-0015[1].jpg","R1-08878-0023[1].jpg","R1-08878-0024[1].jpg",
+    "R1-08880-002A[1].jpg","R1-08880-016A[1].jpg"
+  ];
+  let currentSlide = 0;
+  const slideImage = document.querySelector('.gallery-slide');
+
+  function showSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    slideImage.style.opacity = 0;
+    setTimeout(() => {
+      slideImage.src = slides[currentSlide];
+      slideImage.style.opacity = 1;
+    }, 300);
+  }
+
+  function plusSlides(n) {
+    showSlide(currentSlide + n);
   }
 
   setInterval(() => {
-    if (displayed.length === 0) return;
-    const indexToReplace = Math.floor(Math.random() * displayed.length);
-    const newImg = document.createElement("img");
-    const newSrc = getRandomNonRepeatingImage(displayed);
-    newImg.src = newSrc;
-    newImg.alt = "gallery image";
-    newImg.style.opacity = 0;
-    newImg.style.transition = "opacity 1s ease";
-    grid.replaceChild(newImg, grid.children[indexToReplace]);
-    displayed[indexToReplace] = newSrc;
-    requestAnimationFrame(() => {
-      newImg.style.opacity = 1;
-    });
+    plusSlides(1);
   }, 5000);
 </script>
-  <style>
-    .gallery-grid {
-      column-count: 3;
-      column-gap: 1.2rem;
-    }
-    @media screen and (max-width: 768px) {
-      .gallery-grid {
-        column-count: 2;
-      }
-    }
-    .gallery-grid img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 1.2rem;
-      display: inline-block;
-      break-inside: avoid;
-      border-radius: 8px;
-    }
-    @media screen and (max-width: 768px) {
-      .gallery-grid {
-        column-count: 2;
-      }
-    }
-    .gallery-grid img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-      display: inline-block;
-      break-inside: avoid;
-      border-radius: 8px;
-    }
-  </style>
-</section>
 
 <script>
   const languageBlocks = document.querySelectorAll('[lang]');
