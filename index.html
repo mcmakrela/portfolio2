@@ -79,14 +79,16 @@
     }
     iframe {
       width: 100%;
-      max-width: 960px;
-      height: 540px;
+      max-width: 860px;
+      height: 480px;
       margin: 0 auto 40px auto;
       display: block;
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      border: 2px solid #f2a365;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 4px solid #1c1c1c;
+      background-color: #000;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      border: none;
+      transition: transform 0.3s ease;
     }
     .gallery-grid {
       display: grid;
@@ -226,7 +228,7 @@
     transition: transform 0.3s ease;
   }
   iframe:hover {
-      transform: scale(1.015);
+      transform: scale(1.01);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
   }
   button.prev, button.next {
@@ -238,10 +240,31 @@
 </style>
 </head>
 <body>
+<div id="intro" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; display: flex; align-items: center; justify-content: center; z-index: 9999;">
+  <span style="font-size: 4rem; animation: clap 0.5s ease-in-out 1;">🎬</span>
+  <audio id="clapSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0a4a72601f.mp3?filename=clap-sound-8280.mp3" autoplay></audio>
+</div>
+<script>
+  window.addEventListener('load', () => {
+    const intro = document.getElementById('intro');
+    setTimeout(() => {
+      intro.style.transition = 'opacity 1s ease';
+      intro.style.opacity = 0;
+      setTimeout(() => intro.remove(), 1000);
+    }, 2000);
+  });
+</script>
+<style>
+  @keyframes clap {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+</style>
 <div class="language-switcher-container">
   <div class="language-switcher">
     🌐
-    <div class="language-options" style="left: 0; top: 100%; position: absolute; display: flex; flex-direction: column; align-items: flex-start;">
+    <div class="language-options" style="left: 0; top: 100%; position: absolute; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 6px;">
       <a href="#" onclick="switchLanguage('en')" style="font-size: 16px; padding: 4px;">🇬🇧</a>
       <a href="#" onclick="switchLanguage('pl')" style="font-size: 16px; padding: 4px;">🇵🇱</a>
       <a href="#" onclick="switchLanguage('de')" style="font-size: 16px; padding: 4px;">🇩🇪</a>
@@ -286,9 +309,7 @@
   <a href="#upcoming">
     🎞️ <span lang="en">Upcoming</span><span lang="pl">Projekt</span><span lang="de">Projekt</span>
   </a>
-  <a href="#map">
-    🗺️ <span lang="en">Places</span><span lang="pl">Miejsca</span><span lang="de">Orte</span>
-  </a>
+  
   <a href="#contact">
     📬 <span lang="en">Contact</span><span lang="pl">Kontakt</span><span lang="de">Kontakt</span>
   </a>
@@ -384,11 +405,15 @@
 <script>
   const languageBlocks = document.querySelectorAll('[lang]');
   function switchLanguage(lang) {
+    localStorage.setItem('preferredLang', lang);
     languageBlocks.forEach(block => {
-      block.style.display = block.lang === lang ? 'block' : 'none';
+      block.style.display = block.lang === lang ? '' : 'none';
     });
   }
-  switchLanguage('en');
+  const savedLang = localStorage.getItem('preferredLang') || 'en';
+  switchLanguage(savedLang);
+</script>
+</script>
 </script>
   <section id="map" class="section">
     <h2>🗺️ <span lang="en">Places I've Filmed</span><span lang="pl">Miejsca, w których kręciłem</span><span lang="de">Orte, an denen ich gedreht habe</span></h2>
@@ -408,10 +433,14 @@
   </div>
 </section>
 <section id="about" class="section">
-  <h2>👤 O mnie</h2>
-  <p lang="en">Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
-  <p lang="pl">Kacper Wissuwa to reżyser i autor zdjęć, który tworzy filmy dokumentalne, reklamy i projekty artystyczne. W swojej twórczości skupia się na subkulturach, zmianach społecznych i tożsamości — pokazując ludzki wymiar każdej historii.</p>
-  <p lang="de">Kacper Wissuwa ist ein Filmemacher und visueller Erzähler. Er produziert Dokumentarfilme, Werbespots und kreative Inhalte. Seine Arbeiten beleuchten Subkulturen, gesellschaftliche Veränderungen und persönliche Identität – stets aus einer emotionalen und menschlichen Perspektive.</p>
+  <h2>👤 <span lang="en">About Me</span><span lang="pl">O mnie</span><span lang="de">Über mich</span></h2>
+  <p lang="en">Kacper Wissuwa is a filmmaker and visual storyteller. He creates a wide variety of films — from music videos, commercials, and LEGO animations to documentaries. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
+  <p lang="pl">Kacper Wissuwa to reżyser i autor zdjęć, który tworzy najróżniejsze filmy — od animacji LEGO, przez teledyski i reklamy, aż po dokumenty. W swojej twórczości skupia się na subkulturach, zmianach społecznych i tożsamości — pokazując ludzki wymiar każdej historii, w unikalnym stylu wizualnym.</p>
+  <p lang="de">Kacper Wissuwa ist ein Filmemacher und visueller Erzähler. Er produziert eine Vielzahl von Filmen – von LEGO-Animationen über Musikvideos und Werbespots bis hin zu Dokumentarfilmen. Seine Arbeiten beleuchten Subkulturen, gesellschaftliche Veränderungen und persönliche Identität – stets aus einer emotionalen und menschlichen Perspektive mit einem ausgeprägten visuellen Stil.</p>
+</section>
+<section id="map" class="section">
+  <h2>🗺️ <span lang="en">Places I've Filmed</span><span lang="pl">Miejsca, w których kręciłem</span><span lang="de">Orte, an denen ich gedreht habe</span></h2>
+  <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
 </section>
 <section id="map" class="section">
     <h2>🗺️ Places I've Filmed</h2>
