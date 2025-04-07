@@ -169,10 +169,10 @@
 <div class="language-switcher-container">
   <div class="language-switcher">
     🌐
-    <div class="language-options">
-      <a href="#" style="font-size: 18px;">🇬🇧</a>
-      <a href="#" style="font-size: 18px;">🇵🇱</a>
-      <a href="#" style="font-size: 18px;">🇩🇪</a>
+    <div class="language-options" style="left: 0; top: 100%; position: absolute;">
+      <a href="#" onclick="switchLanguage('en')" style="font-size: 18px;">🇬🇧</a>
+      <a href="#" onclick="switchLanguage('pl')" style="font-size: 18px;">🇵🇱</a>
+      <a href="#" onclick="switchLanguage('de')" style="font-size: 18px;">🇩🇪</a>
     </div>
   </div>
 </div>
@@ -221,54 +221,87 @@
 </div>
 <script>
   const allImages = [
-    "17-1836kacp6403.jpg",
-    "18-1530wissewa1230.jpg",
-    "30-1530wissewa1230.jpg",
-    "31-1530wissewa1231.jpg",
-    "31-1835kaeper6317.jpg",
-    "35-1836kacp6403.jpg",
-    "36-1530wissewa1230.jpg",
-    "DSC06467.jpg",
-    "DSC06575.jpg",
-    "DSC06839.jpg",
-    "DSC06931.jpg",
-    "R1-02155-004A.jpg",
-    "R1-03913-0021.JPG",
-    "R1-03913-0024.JPG",
-    "R1-03913-0035.JPG",
-    "R1-08878-0004[1].jpg",
-    "R1-08878-0015[1].jpg",
-    "R1-08878-0023[1].jpg",
-    "R1-08878-0024[1].jpg",
-    "R1-08880-002A[1].jpg",
+    "2-1530wissewa1231.jpg","8-8186kacper727.jpg","11-1530wissewa1230.jpg","11-1836kacp6403.jpg","12-1836kacp6403.jpg","15-1530wissewa1231.jpg",
+    "17-1836kacp6403.jpg","18-1530wissewa1230.jpg","30-1530wissewa1230.jpg","31-1530wissewa1231.jpg","31-1835kaeper6317.jpg","35-1836kacp6403.jpg",
+    "36-1530wissewa1230.jpg","DSC06467.jpg","DSC06575.jpg","DSC06839.jpg","DSC06931.jpg","R1-02155-004A.jpg","R1-03913-0021.JPG","R1-03913-0024.JPG",
+    "R1-03913-0035.JPG","R1-08878-0004[1].jpg","R1-08878-0015[1].jpg","R1-08878-0023[1].jpg","R1-08878-0024[1].jpg","R1-08880-002A[1].jpg",
     "R1-08880-016A[1].jpg"
   ];
   const grid = document.getElementById("galleryGrid");
+  let displayed = Array.from(grid.children).map(img => img.src.split('/').pop());
+
   setInterval(() => {
-    const indexToReplace = Math.floor(Math.random() * grid.children.length);
+    const remaining = allImages.filter(img => !displayed.includes(img));
+    if (remaining.length === 0) return;
+    const indexToReplace = Math.floor(Math.random() * displayed.length);
     const newImg = document.createElement("img");
-    const src = allImages[Math.floor(Math.random() * allImages.length)];
-    newImg.src = src;
+    const newSrc = remaining[Math.floor(Math.random() * remaining.length)];
+    newImg.src = newSrc;
     newImg.alt = "gallery image";
     newImg.style.opacity = 0;
     newImg.style.transition = "opacity 0.5s ease";
     grid.replaceChild(newImg, grid.children[indexToReplace]);
+    displayed[indexToReplace] = newSrc;
     requestAnimationFrame(() => {
       newImg.style.opacity = 1;
     });
-  }, 5000);
+  }, 6000);
 </script>
-  </section>
+  <style>
+    .gallery-grid {
+      column-count: 3;
+      column-gap: 1rem;
+    }
+    @media screen and (max-width: 768px) {
+      .gallery-grid {
+        column-count: 2;
+      }
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      display: inline-block;
+      break-inside: avoid;
+      border-radius: 8px;
+    }
+  </style>
+</section>
 
-  <section id="about" class="section">
-    <h2>👤 O mnie</h2>
-    <p>Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
-  </section>
+<script>
+  const languageBlocks = document.querySelectorAll('[lang]');
+  function switchLanguage(lang) {
+    languageBlocks.forEach(block => {
+      block.style.display = block.lang === lang ? 'block' : 'none';
+    });
+  }
+  switchLanguage('en');
+</script>
 
+  $1
+  <section id="map" class="section">
+    <h2>🗺️ Places I've Filmed</h2>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+  </section>
   <section id="contact" class="section contact">
     <h2>📬 Kontakt</h2>
-    <p>Możesz skontaktować się przez <a href="mailto:kontakt@videouberwacht.com">kontakt@videouberwacht.com</a></p>
+    <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+    <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
+  </section>
+
+  <section id="upcoming" class="section">
+    <h2>🎞️ Upcoming Project</h2>
+    <img src="_plakat.jpg" alt="Upcoming film poster" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
+    <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
+  </section>
+
+  <section id="map" class="section">
+    <h2>🗺️ Places I've Filmed</h2>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
   </section>
 </main>
+<footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
+  © 2025 videouberwacht — All rights reserved.
+</footer>
 </body>
 </html>
