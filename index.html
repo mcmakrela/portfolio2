@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>videouberwacht</title>
   <style>
+    .menu a {
+      position: relative;
+    }
+    .menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #f2a365;
+      transition: width 0.3s ease;
+    }
+    .menu a:hover::after {
+      width: 100%;
+    }
+
     html {
       background-color: #000;
     }
@@ -146,13 +163,10 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s ease, border-bottom 0.3s ease;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 3px;
+      transition: color 0.3s ease;
     }
     .menu a:hover {
-      color: #f2a365;
-      border-bottom: 2px solid #f2a365;
+      color: #aaa;
     }
     .section img[src*="_plakat"] {
       max-width: 300px;
@@ -183,8 +197,19 @@
 <main>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
       document.querySelectorAll('.section').forEach(section => {
-        section.classList.add('visible');
+        observer.observe(section);
       });
     });
   </script>
@@ -194,12 +219,12 @@
       <span>videouberwacht</span>
     </div>
     <div class="menu">
-      <a href="#films">🎬 Films</a>
-      <a href="#gallery">📸 Gallery</a>
-      <a href="#about">👤 About</a>
-      <a href="#upcoming">🎞️ Upcoming</a>
-      <a href="#map">🗺️ Places</a>
-      <a href="#contact">📬 Contact</a>
+      <a href="#films">🎬 Filmy</a>
+      <a href="#gallery">📸 Galeria</a>
+      <a href="#about">👤 O mnie</a>
+      <a href="#upcoming">🎞️ Projekt</a>
+      <a href="#map">🗺️ Miejsca</a>
+      <a href="#contact">📬 Kontakt</a>
     </div>
   </nav>
 
@@ -223,6 +248,10 @@
       <img src="11-1836kacp6403.jpg" alt="gallery image" />
       <img src="12-1836kacp6403.jpg" alt="gallery image" />
       <img src="15-1530wissewa1231.jpg" alt="gallery image" />
+      <img src="17-1836kacp6403.jpg" alt="gallery image" />
+      <img src="18-1530wissewa1230.jpg" alt="gallery image" />
+      <img src="30-1530wissewa1230.jpg" alt="gallery image" />
+      <img src="31-1530wissewa1231.jpg" alt="gallery image" />
 </div>
 <script>
   const allImages = [
@@ -282,13 +311,27 @@
   }
   switchLanguage('en');
 </script>
+  <section id="map" class="section">
+    <h2>🗺️ Places I've Filmed</h2>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+  </section>
+  
 
-  $1
-  <section id="about" class="section">
-  <h2>👤 About Me</h2>
-  <p>Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
+  <section id="upcoming" class="section" style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 2rem;">
+  <div>
+    <img src="_plakat.jpg" alt="Upcoming film poster" style="max-width: 300px; border-radius: 8px;" />
+  </div>
+  <div style="flex: 1; min-width: 280px;">
+    <h2>🎞️ Upcoming Project</h2>
+    <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
+  </div>
 </section>
-
+<section id="about" class="section">
+  <h2>👤 O mnie</h2>
+  <p lang="en">Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
+  <p lang="pl">Kacper Wissuwa to reżyser i autor zdjęć, który tworzy filmy dokumentalne, reklamy i projekty artystyczne. W swojej twórczości skupia się na subkulturach, zmianach społecznych i tożsamości — pokazując ludzki wymiar każdej historii.</p>
+  <p lang="de">Kacper Wissuwa ist ein Filmemacher und visueller Erzähler. Er produziert Dokumentarfilme, Werbespots und kreative Inhalte. Seine Arbeiten beleuchten Subkulturen, gesellschaftliche Veränderungen und persönliche Identität – stets aus einer emotionalen und menschlichen Perspektive.</p>
+</section>
 <section id="map" class="section">
     <h2>🗺️ Places I've Filmed</h2>
     <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
@@ -297,17 +340,6 @@
     <h2>📬 Kontakt</h2>
     <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
     <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
-  </section>
-
-  <section id="upcoming" class="section">
-    <h2>🎞️ Upcoming Project</h2>
-    <img src="_plakat.jpg" alt="Upcoming film poster" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
-    <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
-  </section>
-
-  <section id="map" class="section">
-    <h2>🗺️ Places I've Filmed</h2>
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
   </section>
 </main>
 <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
