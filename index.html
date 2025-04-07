@@ -8,12 +8,6 @@
     html {
       background-color: #000;
     }
-    .gallery-grid img:nth-child(3n) {
-      grid-column: span 2;
-    }
-    .gallery-grid img:nth-child(5n) {
-      grid-row: span 2;
-    }
     body {
       margin: 0;
       font-family: 'Helvetica Neue', sans-serif;
@@ -34,6 +28,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.6s ease, transform 0.6s ease;
+      text-align: left;
     }
     .section.visible {
       opacity: 1;
@@ -42,14 +37,14 @@
     h2 {
       font-size: 2em;
       margin-bottom: 0.5em;
-      text-align: center;
+      text-align: left;
     }
     h2::after {
       content: '';
       display: block;
       width: 50px;
       height: 3px;
-      margin: 10px auto 0 auto;
+      margin: 10px 0 0 0;
       background: #fff;
       opacity: 0.5;
     }
@@ -78,31 +73,6 @@
     }
     .gallery-grid img:hover {
       transform: scale(1.02);
-    }
-    .lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.9);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-    .lightbox img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 8px;
-    }
-    .lightbox.active {
-      display: flex;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
     .language-switcher-container {
       position: fixed;
@@ -148,24 +118,37 @@
       width: 100%;
       background-color: #111;
       padding: 1rem 2rem;
-      text-align: center;
       position: sticky;
       top: 0;
       z-index: 100;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+    }
+    .nav-left img {
+      height: 36px;
+      margin-right: 10px;
+    }
+    .nav-left span {
+      font-size: 1.2rem;
+      color: white;
+    }
+    .menu {
+      display: flex;
       gap: 1rem;
     }
-    nav a {
+    .menu a {
       color: white;
       text-decoration: none;
-      margin: 0 1rem;
       font-weight: bold;
       transition: color 0.3s ease;
     }
-    nav a:hover {
+    .menu a:hover {
       color: #aaa;
     }
     .section img[src*="_plakat"] {
@@ -203,88 +186,40 @@
     });
   </script>
   <nav>
-    <img src="logo_orange.svg" alt="logo" style="height: 36px; margin-right: 10px;" />
-    <span style="font-size: 1.2rem; color: white;">videouberwacht</span>
+    <div class="nav-left">
+      <img src="logo.png" alt="logo" />
+      <span>videouberwacht</span>
+    </div>
+    <div class="menu">
+      <a href="#films">Filmy</a>
+      <a href="#gallery">Galeria</a>
+      <a href="#about">O mnie</a>
+      <a href="#contact">Kontakt</a>
+    </div>
   </nav>
 
-  <section class="section" id="films">
-    <h2>🎬 Selected Works</h2>
-    <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/oGLswQXQXQzQE" frameborder="0" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen></iframe>
+  <!-- Tutaj możesz dodać sekcje: -->
+  <section id="films" class="section">
+    <h2>Filmy</h2>
+    <!-- iframe z filmami tutaj -->
   </section>
 
-  <section class="section" id="upcoming">
-    <h2>🎞️ Upcoming</h2>
-    <img src="_plakat.jpg" alt="Under the Same Sky Poster" style="max-width: 260px; width: 100%; display: block; margin: 0 auto 1rem;" />
-    <p style="text-align: center;">Kacper is currently working on a new film <strong>"Under the Same Sky"</strong>, shot across Ukraine. Premiering 2025.</p>
-  </section>
-
-  <section class="section" id="about">
-    <h2>👤 About Me</h2>
-    <p style="text-align: center;">Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
-  </section>
-
-  <section class="section" id="map">
-    <h2>🗺️ Places I've Filmed</h2>
-    <div style="display: flex; justify-content: center;">
-      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+  <section id="gallery" class="section">
+    <h2>Galeria</h2>
+    <div class="gallery-grid">
+      <!-- Wstawione zdjęcia znajdą się tutaj -->
     </div>
   </section>
 
-  <section class="section" id="gallery">
-    <h2>📸 Gallery</h2>
-    <div class="gallery-grid" id="galleryGrid">
-      <img src="R1-08878-0004[1].jpg" alt="Gallery image" />
-      <img src="R1-08878-0015[1].jpg" alt="Gallery image" />
-      <img src="R1-08878-0023[1].jpg" alt="Gallery image" />
-      <img src="R1-08878-0024[1].jpg" alt="Gallery image" />
-      <img src="R1-08880-002A[1].jpg" alt="Gallery image" />
-      <img src="R1-08880-016A[1].jpg" alt="Gallery image" />
-    </div>
+  <section id="about" class="section">
+    <h2>O mnie</h2>
+    <p>Tu pojawi się opis twórcy, inspiracje, styl pracy itd.</p>
   </section>
 
-  <section class="section contact" id="contact">
-    <h2>📬 Contact</h2>
-    <p style="text-align: center;">
-      <a href="mailto:kacper.wissuwa@videouberwacht.com">📧 kacper.wissuwa@videouberwacht.com</a><br>
-      <a href="https://instagram.com/mcmakrela" target="_blank">📸 @mcmakrela</a>
-    </p>
+  <section id="contact" class="section contact">
+    <h2>Kontakt</h2>
+    <p>Możesz skontaktować się przez <a href="mailto:kontakt@videouberwacht.com">kontakt@videouberwacht.com</a></p>
   </section>
-
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Expanded image" />
-  </div>
 </main>
-<script>
-  const allImages = [
-    "R1-08878-0004[1].jpg",
-    "R1-08878-0015[1].jpg",
-    "R1-08878-0023[1].jpg",
-    "R1-08878-0024[1].jpg",
-    "R1-08880-002A[1].jpg",
-    "R1-08880-016A[1].jpg"
-  ];
-  const galleryGrid = document.getElementById("galleryGrid");
-  let currentIndex = 6;
-  setInterval(() => {
-    const newImg = document.createElement("img");
-    newImg.src = allImages[currentIndex % allImages.length];
-    newImg.alt = "Gallery image";
-    newImg.style.opacity = 0;
-    newImg.style.transition = "opacity 0.5s ease";
-
-    const removeIndex = Math.floor(Math.random() * galleryGrid.children.length);
-    galleryGrid.replaceChild(newImg, galleryGrid.children[removeIndex]);
-
-    requestAnimationFrame(() => {
-      newImg.style.opacity = 1;
-    });
-    currentIndex++;
-  }, 5000);
-</script>
 </body>
 </html>
