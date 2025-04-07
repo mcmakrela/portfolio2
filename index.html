@@ -198,7 +198,12 @@
       color: #f78e52;
     }
     .gallery-slide {
-    animation: slideIn 0.6s ease-in-out;
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 0.5s ease;
   }
 
   @keyframes slideIn {
@@ -300,35 +305,40 @@
     });
   </script>
   <nav>
-    <div class="nav-left">
-      <img src="logo.png" alt="logo" />
-      <span>videouberwacht</span>
+  <div class="nav-left">
+    <img src="logo.png" alt="logo" />
+    <span>videouberwacht</span>
+  </div>
+  <div class="menu">
+    <div lang="en">
+      <a href="#films">🎬 Films</a>
+      <a href="#gallery">📸 Gallery</a>
+      <a href="#about">👤 About</a>
+      <a href="#upcoming">🎞️ Upcoming</a>
+      <a href="#contact">📬 Contact</a>
     </div>
-    <div class="menu">
-  <a href="#films">
-    🎬 <span lang="en">Films</span><span lang="pl">Filmy</span><span lang="de">Filme</span>
-  </a>
-  <a href="#gallery">
-    📸 <span lang="en">Gallery</span><span lang="pl">Galeria</span><span lang="de">Galerie</span>
-  </a>
-  <a href="#about">
-    👤 <span lang="en">About</span><span lang="pl">O mnie</span><span lang="de">Über mich</span>
-  </a>
-  <a href="#upcoming">
-    🎞️ <span lang="en">Upcoming</span><span lang="pl">Projekt</span><span lang="de">Projekt</span>
-  </a>
-  
-  <a href="#contact">
-    📬 <span lang="en">Contact</span><span lang="pl">Kontakt</span><span lang="de">Kontakt</span>
-  </a>
-</div>
+    <div lang="pl">
+      <a href="#films">🎬 Filmy</a>
+      <a href="#gallery">📸 Galeria</a>
+      <a href="#about">👤 O mnie</a>
+      <a href="#upcoming">🎞️ Projekt</a>
+      <a href="#contact">📬 Kontakt</a>
+    </div>
+    <div lang="de">
+      <a href="#films">🎬 Filme</a>
+      <a href="#gallery">📸 Galerie</a>
+      <a href="#about">👤 Über mich</a>
+      <a href="#upcoming">🎞️ Projekt</a>
+      <a href="#contact">📬 Kontakt</a>
+    </div>
+  </div>
   </nav>
 
   <!-- Tutaj możesz dodać sekcje: -->
   <section id="films" class="section">
-    <h2>
-      🎬 <span lang="en">Films</span><span lang="pl">Filmy</span><span lang="de">Filme</span>
-    </h2>
+    <div lang="en"><h2>🎬 Films</h2></div>
+<div lang="pl"><h2>🎬 Filmy</h2></div>
+<div lang="de"><h2>🎬 Filme</h2></div>
     <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen></iframe>
@@ -338,7 +348,9 @@
   </section>
 
   <section id="gallery" class="section">
-  <h2>📸 <span lang="en">Gallery</span><span lang="pl">Galeria</span><span lang="de">Galerie</span></h2>
+  <div lang="en"><h2>📸 Gallery</h2></div>
+<div lang="pl"><h2>📸 Galeria</h2></div>
+<div lang="de"><h2>📸 Galerie</h2></div>
   <div class="slider-container">
     <button class="prev" onclick="plusSlides(-1)">❮</button>
     <div class="slider-wrapper">
@@ -351,16 +363,19 @@
 <style>
   .slider-container {
     position: relative;
-    max-width: 100%;
+    max-width: 90%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
   }
   .slider-wrapper {
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
     overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   }
   .gallery-slide {
     max-width: 100%; width: 100%; max-height: 600px; object-fit: contain;
@@ -370,16 +385,17 @@
   }
   .prev, .next {
     cursor: pointer;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.4);
     border: none;
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: #fff;
-    padding: 0 20px;
-    z-index: 10;
-    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s;
   }
   .prev:hover, .next:hover {
-    color: #f2a365;
+    background-color: rgba(255, 165, 0, 0.8);
+    transform: scale(1.15);
   }
 </style>
 
@@ -399,7 +415,6 @@
   function showSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
     slideImage.src = slides[currentSlide];
-    }, 300);
   }
 
   function plusSlides(n) {
@@ -425,20 +440,42 @@
   });
 </script>
   <section id="about" class="section">
-  <h2>👤 <span lang="en">About Me</span><span lang="pl">O mnie</span><span lang="de">Über mich</span></h2>
+  <div lang="en"><h2>👤 About Me</h2></div>
+<div lang="pl"><h2>👤 O mnie</h2></div>
+<div lang="de"><h2>👤 Über mich</h2></div>
   <p lang="en">Kacper Wissuwa is a filmmaker and visual storyteller. He creates a wide variety of films — from music videos, commercials, and LEGO animations to documentaries. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
   <p lang="pl">Kacper Wissuwa to reżyser i autor zdjęć, który tworzy najróżniejsze filmy — od animacji LEGO, przez teledyski i reklamy, aż po dokumenty. W swojej twórczości skupia się na subkulturach, zmianach społecznych i tożsamości — pokazując ludzki wymiar każdej historii, w unikalnym stylu wizualnym.</p>
   <p lang="de">Kacper Wissuwa ist ein Filmemacher und visueller Erzähler. Er produziert eine Vielzahl von Filmen – von LEGO-Animationen über Musikvideos und Werbespots bis hin zu Dokumentarfilmen. Seine Arbeiten beleuchten Subkulturen, gesellschaftliche Veränderungen und persönliche Identität – stets aus einer emotionalen und menschlichen Perspektive mit einem ausgeprägten visuellen Stil.</p>
   <div style="margin-top: 60px;">
-    <h2>🗺️ <span lang="en">Places I've Filmed</span><span lang="pl">Miejsca, w których kręciłem</span><span lang="de">Orte, an denen ich gedreht habe</span></h2>
+    <div lang="en"><h2>🗺️ Places I've Filmed</h2></div>
+<div lang="pl"><h2>🗺️ Miejsca, w których kręciłem</h2></div>
+<div lang="de"><h2>🗺️ Orte, an denen ich gedreht habe</h2></div>
     <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
   </div>
 </section>
 
   <section id="contact" class="section contact">
-    <h2>📬 <span lang="en">Contact</span><span lang="pl">Kontakt</span><span lang="de">Kontakt</span></h2>
-    <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
-    <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
+  <div lang="en"><h2>📬 Contact</h2><p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p><p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p></div>
+  <div lang="pl"><h2>📬 Kontakt</h2><p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p><p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p></div>
+  <div lang="de"><h2>📬 Kontakt</h2><p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p><p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p></div>
+</section>
+
+  <section id="upcoming" class="section">
+    <div lang="en">
+      <h2>🎞️ Upcoming Project</h2>
+      <img src="_plakat.jpg" alt="Upcoming film poster" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
+      <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
+    </div>
+    <div lang="pl">
+      <h2>🎞️ Nadchodzący projekt</h2>
+      <img src="_plakat.jpg" alt="Nadchodzący film plakat" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
+      <p><strong>Under the Same Sky</strong> opowiada o podróży polskiego filmowca na Ukrainę, dwa lata po rozpoczęciu pełnoskalowej inwazji. Odwiedzając Kijów po raz pierwszy, dokumentuje on odporność cywilów, którzy walczą o normalność w obliczu wojny. Poprzez wywiady z artystami, którzy zdecydowali się zostać lub powrócić, film ukazuje ich motywacje, lęki i nadzieje — pokazując, jak kreatywność i determinacja przetrwają nawet w najciemniejszych czasach. To poruszająca refleksja o życiu pod zagrożeniem i sile ludzkiego ducha.</p>
+    </div>
+    <div lang="de">
+      <h2>🎞️ Bevorstehendes Projekt</h2>
+      <img src="_plakat.jpg" alt="Kommender Filmplakat" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
+      <p><strong>Under the Same Sky</strong> begleitet die Reise eines polnischen Filmemachers in die Ukraine – zwei Jahre nach Beginn der großangelegten Invasion. Bei seinem ersten Besuch in Kiew dokumentiert er die Widerstandskraft der Zivilbevölkerung, die trotz des Krieges nach Normalität strebt. Durch Interviews mit Künstlern, die geblieben oder zurückgekehrt sind, beleuchtet der Film ihre Beweggründe, Ängste und Hoffnungen – und zeigt, wie Kreativität und Entschlossenheit selbst in dunklen Zeiten überleben. Ein bewegendes Porträt über das Leben im Ausnahmezustand und die Kraft der Hoffnung.</p>
+    </div>
   </section>
 </main>
 <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
