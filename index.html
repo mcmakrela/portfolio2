@@ -36,12 +36,12 @@
       scroll-behavior: smooth;
     }
     main {
-      padding: 20px;
+      padding: 60px 20px;
       max-width: 1200px;
       margin: auto;
     }
     .section {
-      margin-bottom: 100px;
+      margin-bottom: 140px;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -264,27 +264,44 @@
   const grid = document.getElementById("galleryGrid");
   let displayed = Array.from(grid.children).map(img => img.src.split('/').pop());
 
+  function getRandomNonRepeatingImage(currentlyDisplayed) {
+    const remaining = allImages.filter(img => !currentlyDisplayed.includes(img));
+    return remaining[Math.floor(Math.random() * remaining.length)];
+  }
+
   setInterval(() => {
-    const remaining = allImages.filter(img => !displayed.includes(img));
-    if (remaining.length === 0) return;
+    if (displayed.length === 0) return;
     const indexToReplace = Math.floor(Math.random() * displayed.length);
     const newImg = document.createElement("img");
-    const newSrc = remaining[Math.floor(Math.random() * remaining.length)];
+    const newSrc = getRandomNonRepeatingImage(displayed);
     newImg.src = newSrc;
     newImg.alt = "gallery image";
     newImg.style.opacity = 0;
-    newImg.style.transition = "opacity 0.5s ease";
+    newImg.style.transition = "opacity 1s ease";
     grid.replaceChild(newImg, grid.children[indexToReplace]);
     displayed[indexToReplace] = newSrc;
     requestAnimationFrame(() => {
       newImg.style.opacity = 1;
     });
-  }, 6000);
+  }, 5000);
 </script>
   <style>
     .gallery-grid {
       column-count: 3;
-      column-gap: 1rem;
+      column-gap: 1.2rem;
+    }
+    @media screen and (max-width: 768px) {
+      .gallery-grid {
+        column-count: 2;
+      }
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1.2rem;
+      display: inline-block;
+      break-inside: avoid;
+      border-radius: 8px;
     }
     @media screen and (max-width: 768px) {
       .gallery-grid {
