@@ -5,35 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>videouberwacht</title>
   <style>
-    .section {
-      animation: fadeUp 1s ease forwards;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .menu a {
-      position: relative;
-    }
-    .menu a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #f2a365;
-      transition: width 0.3s ease;
-    }
-    .menu a:hover::after {
-      width: 100%;
-    }
-
     html {
       background-color: #000;
     }
@@ -48,12 +19,12 @@
       scroll-behavior: smooth;
     }
     main {
-      padding: 60px 20px;
+      padding: 20px;
       max-width: 1200px;
       margin: auto;
     }
     .section {
-      margin-bottom: 140px;
+      margin-bottom: 100px;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.6s ease, transform 0.6s ease;
@@ -79,16 +50,11 @@
     }
     iframe {
       width: 100%;
-      max-width: 860px;
-      height: 480px;
+      max-width: 960px;
+      height: 540px;
       margin: 0 auto 40px auto;
       display: block;
-      border-radius: 16px;
-      border: 4px solid #1c1c1c;
-      background-color: #000;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
-      border: none;
-      transition: transform 0.3s ease;
+      border-radius: 8px;
     }
     .gallery-grid {
       display: grid;
@@ -180,10 +146,13 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, border-bottom 0.3s ease;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 3px;
     }
     .menu a:hover {
-      color: #aaa;
+      color: #f2a365;
+      border-bottom: 2px solid #f2a365;
     }
     .section img[src*="_plakat"] {
       max-width: 300px;
@@ -197,91 +166,16 @@
     .contact a:hover {
       color: #f78e52;
     }
-    .gallery-slide {
-    width: 100%;
-    height: auto;
-    max-height: 480px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: opacity 0.5s ease;
-  }
-
-  @keyframes slideIn {
-    from {
-      transform: translateX(30px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  .nav-left span {
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  .nav-left span:hover {
-    transform: scale(1.05);
-    color: #f2a365;
-  }
-  .menu a {
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  .menu a:hover {
-    transform: scale(1.05);
-  }
-  iframe {
-    transition: transform 0.3s ease;
-  }
-  iframe:hover {
-      transform: scale(1.01);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-  }
-  button.prev, button.next {
-    transition: transform 0.3s ease;
-  }
-  button.prev:hover, button.next:hover {
-    transform: scale(1.1);
-  }
-[lang] { display: none; }
-</style>
+  </style>
 </head>
 <body>
-<div id="intro" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; display: flex; align-items: center; justify-content: center; z-index: 9999;">
-  <span style="font-size: 5rem; animation: bounceIn 0.4s ease;">🎬</span>
-  <audio id="clapSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0a4a72601f.mp3?filename=clap-sound-8280.mp3" autoplay></audio>
-</div>
-<script>
-  window.addEventListener('load', () => {
-    const intro = document.getElementById('intro');
-    setTimeout(() => {
-      intro.style.transition = 'opacity 0.8s ease';
-      intro.style.opacity = 0;
-      setTimeout(() => intro.remove(), 800);
-    }, 1000);
-  });
-</script>
-
-<style>
-  @keyframes bounceIn {
-    0% { transform: scale(0.3); opacity: 0; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(1); }
-  }
-</style>
-<style>
-  @keyframes clap {
-    0% { transform: scale(0.8); opacity: 0; }
-    50% { transform: scale(1.2); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-</style>
 <div class="language-switcher-container">
   <div class="language-switcher">
     🌐
-    <div class="language-options" style="left: 0; top: 100%; position: absolute; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 6px;">
-      <a href="#" onclick="switchLanguage('en')" style="font-size: 16px; padding: 4px;">🇬🇧</a>
-      <a href="#" onclick="switchLanguage('pl')" style="font-size: 16px; padding: 4px;">🇵🇱</a>
-      <a href="#" onclick="switchLanguage('de')" style="font-size: 16px; padding: 4px;">🇩🇪</a>
+    <div class="language-options" style="left: 0; top: 100%; position: absolute;">
+      <a href="#" onclick="switchLanguage('en')" style="font-size: 18px;">🇬🇧</a>
+      <a href="#" onclick="switchLanguage('pl')" style="font-size: 18px;">🇵🇱</a>
+      <a href="#" onclick="switchLanguage('de')" style="font-size: 18px;">🇩🇪</a>
     </div>
   </div>
 </div>
@@ -289,57 +183,29 @@
 <main>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1
-      });
-
       document.querySelectorAll('.section').forEach(section => {
-        observer.observe(section);
+        section.classList.add('visible');
       });
     });
   </script>
   <nav>
-  <div class="nav-left">
-    <img src="logo.png" alt="logo" />
-    <span>videouberwacht</span>
-  </div>
-  <div class="menu">
-    <div lang="en">
+    <div class="nav-left">
+      <img src="logo.png" alt="logo" />
+      <span>videouberwacht</span>
+    </div>
+    <div class="menu">
       <a href="#films">🎬 Films</a>
       <a href="#gallery">📸 Gallery</a>
       <a href="#about">👤 About</a>
       <a href="#upcoming">🎞️ Upcoming</a>
+      <a href="#map">🗺️ Places</a>
       <a href="#contact">📬 Contact</a>
     </div>
-    <div lang="pl">
-      <a href="#films">🎬 Filmy</a>
-      <a href="#gallery">📸 Galeria</a>
-      <a href="#about">👤 O mnie</a>
-      <a href="#upcoming">🎞️ Projekt</a>
-      <a href="#contact">📬 Kontakt</a>
-    </div>
-    <div lang="de">
-      <a href="#films">🎬 Filme</a>
-      <a href="#gallery">📸 Galerie</a>
-      <a href="#about">👤 Über mich</a>
-      <a href="#upcoming">🎞️ Projekt</a>
-      <a href="#contact">📬 Kontakt</a>
-    </div>
-  </div>
   </nav>
 
   <!-- Tutaj możesz dodać sekcje: -->
   <section id="films" class="section">
-    <div lang="en"><h2>🎬 Films</h2></div>
-<div lang="pl"><h2>🎬 Filmy</h2></div>
-<div lang="de"><h2>🎬 Filme</h2></div>
+    <h2>🎬 Filmy</h2>
     <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen></iframe>
@@ -349,134 +215,99 @@
   </section>
 
   <section id="gallery" class="section">
-  <div lang="en"><h2>📸 Gallery</h2></div>
-<div lang="pl"><h2>📸 Galeria</h2></div>
-<div lang="de"><h2>📸 Galerie</h2></div>
-  <div class="slider-container">
-    <button class="prev" onclick="plusSlides(-1)">❮</button>
-    <div class="slider-wrapper">
-      <img class="gallery-slide" src="2-1530wissewa1231.jpg" alt="gallery image" />
-    </div>
-    <button class="next" onclick="plusSlides(1)">❯</button>
-  </div>
-</section>
-
-<style>
-  .slider-container {
-    position: relative;
-    max-width: 90%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-  }
-  .slider-wrapper {
-    width: 100%;
-    max-width: 700px;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  }
-  .gallery-slide {
-    max-width: 100%; width: 100%; max-height: 600px; object-fit: contain;
-    height: auto;
-    border-radius: 8px;
-    
-  }
-  .prev, .next {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.4);
-    border: none;
-    font-size: 2.2rem;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 50%;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  .prev:hover, .next:hover {
-    background-color: rgba(255, 165, 0, 0.8);
-    transform: scale(1.15);
-  }
-</style>
-
+    <h2>📸 Galeria</h2>
+    <div class="gallery-grid" id="galleryGrid">
+      <img src="2-1530wissewa1231.jpg" alt="gallery image" />
+      <img src="8-8186kacper727.jpg" alt="gallery image" />
+      <img src="11-1530wissewa1230.jpg" alt="gallery image" />
+      <img src="11-1836kacp6403.jpg" alt="gallery image" />
+      <img src="12-1836kacp6403.jpg" alt="gallery image" />
+      <img src="15-1530wissewa1231.jpg" alt="gallery image" />
+</div>
 <script>
-  const slides = [
-    "2-1530wissewa1231.jpg","8-8186kacper727.jpg","11-1530wissewa1230.jpg","11-1836kacp6403.jpg",
-    "12-1836kacp6403.jpg","15-1530wissewa1231.jpg","17-1836kacp6403.jpg","18-1530wissewa1230.jpg",
-    "30-1530wissewa1230.jpg","31-1530wissewa1231.jpg","31-1835kaeper6317.jpg","35-1836kacp6403.jpg",
-    "36-1530wissewa1230.jpg","DSC06467.jpg","DSC06575.jpg","DSC06839.jpg","DSC06931.jpg",
-    "R1-02155-004A.jpg","R1-03913-0021.JPG","R1-03913-0024.JPG","R1-03913-0035.JPG",
-    "R1-08878-0004[1].jpg","R1-08878-0015[1].jpg","R1-08878-0023[1].jpg","R1-08878-0024[1].jpg",
-    "R1-08880-002A[1].jpg","R1-08880-016A[1].jpg"
+  const allImages = [
+    "2-1530wissewa1231.jpg","8-8186kacper727.jpg","11-1530wissewa1230.jpg","11-1836kacp6403.jpg","12-1836kacp6403.jpg","15-1530wissewa1231.jpg",
+    "17-1836kacp6403.jpg","18-1530wissewa1230.jpg","30-1530wissewa1230.jpg","31-1530wissewa1231.jpg","31-1835kaeper6317.jpg","35-1836kacp6403.jpg",
+    "36-1530wissewa1230.jpg","DSC06467.jpg","DSC06575.jpg","DSC06839.jpg","DSC06931.jpg","R1-02155-004A.jpg","R1-03913-0021.JPG","R1-03913-0024.JPG",
+    "R1-03913-0035.JPG","R1-08878-0004[1].jpg","R1-08878-0015[1].jpg","R1-08878-0023[1].jpg","R1-08878-0024[1].jpg","R1-08880-002A[1].jpg",
+    "R1-08880-016A[1].jpg"
   ];
-  let currentSlide = 0;
-  const slideImage = document.querySelector('.gallery-slide');
-
-  function showSlide(index) {
-    currentSlide = (index + slides.length) % slides.length;
-    slideImage.src = slides[currentSlide];
-  }
-
-  function plusSlides(n) {
-    showSlide(currentSlide + n);
-  }
+  const grid = document.getElementById("galleryGrid");
+  let displayed = Array.from(grid.children).map(img => img.src.split('/').pop());
 
   setInterval(() => {
-    plusSlides(1);
-  }, 5000);
+    const remaining = allImages.filter(img => !displayed.includes(img));
+    if (remaining.length === 0) return;
+    const indexToReplace = Math.floor(Math.random() * displayed.length);
+    const newImg = document.createElement("img");
+    const newSrc = remaining[Math.floor(Math.random() * remaining.length)];
+    newImg.src = newSrc;
+    newImg.alt = "gallery image";
+    newImg.style.opacity = 0;
+    newImg.style.transition = "opacity 0.5s ease";
+    grid.replaceChild(newImg, grid.children[indexToReplace]);
+    displayed[indexToReplace] = newSrc;
+    requestAnimationFrame(() => {
+      newImg.style.opacity = 1;
+    });
+  }, 6000);
 </script>
+  <style>
+    .gallery-grid {
+      column-count: 3;
+      column-gap: 1rem;
+    }
+    @media screen and (max-width: 768px) {
+      .gallery-grid {
+        column-count: 2;
+      }
+    }
+    .gallery-grid img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      display: inline-block;
+      break-inside: avoid;
+      border-radius: 8px;
+    }
+  </style>
+</section>
 
 <script>
   const languageBlocks = document.querySelectorAll('[lang]');
   function switchLanguage(lang) {
-    localStorage.setItem('preferredLang', lang);
     languageBlocks.forEach(block => {
-      block.style.display = block.lang === lang ? '' : 'none';
+      block.style.display = block.lang === lang ? 'block' : 'none';
     });
   }
-  window.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('preferredLang') || 'en';
-    switchLanguage(savedLang);
-  });
+  switchLanguage('en');
 </script>
+
+  $1
   <section id="about" class="section">
-  <div lang="en"><h2>👤 About Me</h2></div>
-<div lang="pl"><h2>👤 O mnie</h2></div>
-<div lang="de"><h2>👤 Über mich</h2></div>
-  <p lang="en">Kacper Wissuwa is a filmmaker and visual storyteller. He creates a wide variety of films — from music videos, commercials, and LEGO animations to documentaries. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
-  <p lang="pl">Kacper Wissuwa to reżyser i autor zdjęć, który tworzy najróżniejsze filmy — od animacji LEGO, przez teledyski i reklamy, aż po dokumenty. W swojej twórczości skupia się na subkulturach, zmianach społecznych i tożsamości — pokazując ludzki wymiar każdej historii, w unikalnym stylu wizualnym.</p>
-  <p lang="de">Kacper Wissuwa ist ein Filmemacher und visueller Erzähler. Er produziert eine Vielzahl von Filmen – von LEGO-Animationen über Musikvideos und Werbespots bis hin zu Dokumentarfilmen. Seine Arbeiten beleuchten Subkulturen, gesellschaftliche Veränderungen und persönliche Identität – stets aus einer emotionalen und menschlichen Perspektive mit einem ausgeprägten visuellen Stil.</p>
-  <div style="margin-top: 60px;">
-    <div lang="en"><h2>🗺️ Places I've Filmed</h2></div>
-<div lang="pl"><h2>🗺️ Miejsca, w których kręciłem</h2></div>
-<div lang="de"><h2>🗺️ Orte, an denen ich gedreht habe</h2></div>
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
-  </div>
+  <h2>👤 About Me</h2>
+  <p>Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
 </section>
 
+<section id="map" class="section">
+    <h2>🗺️ Places I've Filmed</h2>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+  </section>
   <section id="contact" class="section contact">
-  <div lang="en"><h2>📬 Contact</h2><p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p><p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p></div>
-  <div lang="pl"><h2>📬 Kontakt</h2><p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p><p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p></div>
-  <div lang="de"><h2>📬 Kontakt</h2><p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p><p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p></div>
-</section>
+    <h2>📬 Kontakt</h2>
+    <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+    <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
+  </section>
 
   <section id="upcoming" class="section">
-    <div lang="en">
-      <h2>🎞️ Upcoming Project</h2>
-      <img src="_plakat.jpg" alt="Upcoming film poster" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
-      <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
-    </div>
-    <div lang="pl">
-      <h2>🎞️ Nadchodzący projekt</h2>
-      <img src="_plakat.jpg" alt="Nadchodzący film plakat" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
-      <p><strong>Under the Same Sky</strong> opowiada o podróży polskiego filmowca na Ukrainę, dwa lata po rozpoczęciu pełnoskalowej inwazji. Odwiedzając Kijów po raz pierwszy, dokumentuje on odporność cywilów, którzy walczą o normalność w obliczu wojny. Poprzez wywiady z artystami, którzy zdecydowali się zostać lub powrócić, film ukazuje ich motywacje, lęki i nadzieje — pokazując, jak kreatywność i determinacja przetrwają nawet w najciemniejszych czasach. To poruszająca refleksja o życiu pod zagrożeniem i sile ludzkiego ducha.</p>
-    </div>
-    <div lang="de">
-      <h2>🎞️ Bevorstehendes Projekt</h2>
-      <img src="_plakat.jpg" alt="Kommender Filmplakat" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
-      <p><strong>Under the Same Sky</strong> begleitet die Reise eines polnischen Filmemachers in die Ukraine – zwei Jahre nach Beginn der großangelegten Invasion. Bei seinem ersten Besuch in Kiew dokumentiert er die Widerstandskraft der Zivilbevölkerung, die trotz des Krieges nach Normalität strebt. Durch Interviews mit Künstlern, die geblieben oder zurückgekehrt sind, beleuchtet der Film ihre Beweggründe, Ängste und Hoffnungen – und zeigt, wie Kreativität und Entschlossenheit selbst in dunklen Zeiten überleben. Ein bewegendes Porträt über das Leben im Ausnahmezustand und die Kraft der Hoffnung.</p>
-    </div>
+    <h2>🎞️ Upcoming Project</h2>
+    <img src="_plakat.jpg" alt="Upcoming film poster" style="max-width: 300px; display: block; margin-bottom: 1rem;" />
+    <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
+  </section>
+
+  <section id="map" class="section">
+    <h2>🗺️ Places I've Filmed</h2>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
   </section>
 </main>
 <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
