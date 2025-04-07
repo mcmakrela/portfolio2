@@ -170,9 +170,9 @@
   <div class="language-switcher">
     🌐
     <div class="language-options">
-      <a href="#">🇬🇧</a>
-      <a href="#">🇵🇱</a>
-      <a href="#">🇩🇪</a>
+      <a href="#" style="font-size: 18px;">🇬🇧</a>
+      <a href="#" style="font-size: 18px;">🇵🇱</a>
+      <a href="#" style="font-size: 18px;">🇩🇪</a>
     </div>
   </div>
 </div>
@@ -191,16 +191,16 @@
       <span>videouberwacht</span>
     </div>
     <div class="menu">
-      <a href="#films">Filmy</a>
-      <a href="#gallery">Galeria</a>
-      <a href="#about">O mnie</a>
-      <a href="#contact">Kontakt</a>
+      <a href="#films">🎬 Filmy</a>
+      <a href="#gallery">📸 Galeria</a>
+      <a href="#about">👤 O mnie</a>
+      <a href="#contact">📬 Kontakt</a>
     </div>
   </nav>
 
   <!-- Tutaj możesz dodać sekcje: -->
   <section id="films" class="section">
-    <h2>Filmy</h2>
+    <h2>🎬 Filmy</h2>
     <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen></iframe>
@@ -210,46 +210,63 @@
   </section>
 
   <section id="gallery" class="section">
-    <h2>Galeria</h2>
-    <div class="gallery-grid">
+    <h2>📸 Galeria</h2>
+    <div class="gallery-grid" id="galleryGrid">
       <img src="2-1530wissewa1231.jpg" alt="gallery image" />
       <img src="8-8186kacper727.jpg" alt="gallery image" />
       <img src="11-1530wissewa1230.jpg" alt="gallery image" />
       <img src="11-1836kacp6403.jpg" alt="gallery image" />
       <img src="12-1836kacp6403.jpg" alt="gallery image" />
       <img src="15-1530wissewa1231.jpg" alt="gallery image" />
-      <img src="17-1836kacp6403.jpg" alt="gallery image" />
-      <img src="18-1530wissewa1230.jpg" alt="gallery image" />
-      <img src="30-1530wissewa1230.jpg" alt="gallery image" />
-      <img src="31-1530wissewa1231.jpg" alt="gallery image" />
-      <img src="31-1835kaeper6317.jpg" alt="gallery image" />
-      <img src="35-1836kacp6403.jpg" alt="gallery image" />
-      <img src="36-1530wissewa1230.jpg" alt="gallery image" />
-      <img src="DSC06467.jpg" alt="gallery image" />
-      <img src="DSC06575.jpg" alt="gallery image" />
-      <img src="DSC06839.jpg" alt="gallery image" />
-      <img src="DSC06931.jpg" alt="gallery image" />
-      <img src="R1-02155-004A.jpg" alt="gallery image" />
-      <img src="R1-03913-0021.JPG" alt="gallery image" />
-      <img src="R1-03913-0024.JPG" alt="gallery image" />
-      <img src="R1-03913-0035.JPG" alt="gallery image" />
-      <img src="R1-08878-0004[1].jpg" alt="gallery image" />
-      <img src="R1-08878-0015[1].jpg" alt="gallery image" />
-      <img src="R1-08878-0023[1].jpg" alt="gallery image" />
-      <img src="R1-08878-0024[1].jpg" alt="gallery image" />
-      <img src="R1-08880-002A[1].jpg" alt="gallery image" />
-      <img src="R1-08880-016A[1].jpg" alt="gallery image" />
-      <img src="R1-09725-0008.JPG" alt="gallery image" />
-    </div>
+</div>
+<script>
+  const allImages = [
+    "17-1836kacp6403.jpg",
+    "18-1530wissewa1230.jpg",
+    "30-1530wissewa1230.jpg",
+    "31-1530wissewa1231.jpg",
+    "31-1835kaeper6317.jpg",
+    "35-1836kacp6403.jpg",
+    "36-1530wissewa1230.jpg",
+    "DSC06467.jpg",
+    "DSC06575.jpg",
+    "DSC06839.jpg",
+    "DSC06931.jpg",
+    "R1-02155-004A.jpg",
+    "R1-03913-0021.JPG",
+    "R1-03913-0024.JPG",
+    "R1-03913-0035.JPG",
+    "R1-08878-0004[1].jpg",
+    "R1-08878-0015[1].jpg",
+    "R1-08878-0023[1].jpg",
+    "R1-08878-0024[1].jpg",
+    "R1-08880-002A[1].jpg",
+    "R1-08880-016A[1].jpg"
+  ];
+  const grid = document.getElementById("galleryGrid");
+  setInterval(() => {
+    const indexToReplace = Math.floor(Math.random() * grid.children.length);
+    const newImg = document.createElement("img");
+    const src = allImages[Math.floor(Math.random() * allImages.length)];
+    newImg.src = src;
+    newImg.alt = "gallery image";
+    newImg.style.opacity = 0;
+    newImg.style.transition = "opacity 0.5s ease";
+    grid.replaceChild(newImg, grid.children[indexToReplace]);
+    requestAnimationFrame(() => {
+      newImg.style.opacity = 1;
+    });
+  }, 5000);
+</script>
   </section>
 
   <section id="about" class="section">
-    <h2>O mnie</h2>
+    <h2>👤 O mnie</h2>
     <p>Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
   </section>
 
   <section id="contact" class="section contact">
-    <h2>Kontakt</h2>
+    <h2>📬 Kontakt</h2>
     <p>Możesz skontaktować się przez <a href="mailto:kontakt@videouberwacht.com">kontakt@videouberwacht.com</a></p>
   </section>
 </main>
