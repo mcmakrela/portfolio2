@@ -54,7 +54,7 @@
     }
     iframe {
   width: 100%;
-  aspect-ratio: 21 / 6;
+  aspect-ratio: 21 / 5.5;
   margin: 40px auto;
   display: block;
   border-radius: 8px;
@@ -116,6 +116,9 @@
   margin: auto;
   display: block;
   border-radius: 8px;
+  will-change: opacity, transform;
+  transition: opacity 0.4s ease;
+  backface-visibility: hidden;
 }
     .gallery-controls {
       position: absolute;
@@ -151,6 +154,9 @@
     .upcoming-poster {
   max-width: 300px;
   width: 100%;
+  display: block;
+  box-sizing: border-box;
+  background-color: #000;
 }
     .upcoming-description {
   max-width: 300px;
@@ -269,7 +275,7 @@
 
     <section id="contact" class="section contact">
   <h2>📬 Contact</h2>
-  <p style="margin-bottom: 0;">📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+  <p style="margin-bottom: 0.2rem;">📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
   <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
 </section>
   </main>
