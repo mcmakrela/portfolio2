@@ -53,7 +53,11 @@
     }
     iframe {
   width: 100%;
-  height: 560px;
+  aspect-ratio: 21 / 9;
+  margin: 40px auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
       margin: 0 auto 40px auto;
       display: block;
       border-radius: 8px;
@@ -172,15 +176,12 @@
     }
   </style>
   <script>
-    window.addEventListener('load', () => {
-  document.querySelectorAll('.section').forEach(section => {
-    section.classList.add('visible');
-  });
-});
-});
-    }, 1000);
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.add('visible');
     });
-  </script>
+  });
+</script>
 </head>
 <body>
   
