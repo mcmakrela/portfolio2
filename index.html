@@ -54,7 +54,7 @@
     }
     iframe {
   width: 100%;
-  aspect-ratio: 21 / 8;
+  aspect-ratio: 21 / 7;
   margin: 40px auto;
   display: block;
   border-radius: 8px;
@@ -128,21 +128,21 @@
       pointer-events: none;
     }
     .gallery-controls button {
-      background: rgba(0, 0, 0, 0.6);
-      border: none;
-      color: white;
-      font-size: 2rem;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      pointer-events: auto;
-      border-radius: 8px;
-    }
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  pointer-events: auto;
+  border-radius: 6px;
+}
     .upcoming-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 2rem;
 }
     .upcoming-poster {
   max-width: 300px;
@@ -153,8 +153,11 @@
   width: 100%;
   font-size: 1.1rem;
   line-height: 1.6;
-  margin: 0 auto;
+  margin: 0;
   text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
     .contact a {
       color: #f2a365;
@@ -260,11 +263,20 @@
 
     <section id="contact" class="section contact">
   <h2>📬 Contact</h2>
-  <p style="margin-bottom: 0.2rem;">📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+  <p style="margin-bottom: 0;">📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
   <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
 </section>
   </main>
 
   <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
     © 2025 videouberwacht — All rights reserved.
-  </footer>
+  <button id="scrollTopBtn" title="Go to top" style="position: fixed; bottom: 30px; right: 30px; background-color: #f2a365; color: #000; border: none; padding: 10px 14px; font-size: 18px; border-radius: 50%; cursor: pointer; display: none; z-index: 999;">↑</button>
+<script>
+  const scrollBtn = document.getElementById("scrollTopBtn");
+  window.onscroll = function () {
+    scrollBtn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
+  };
+  scrollBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+</script>
