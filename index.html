@@ -189,6 +189,15 @@
       100% { transform: rotate(0deg); }
     }
       @media screen and (max-width: 768px) {
+  .nav-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .menu {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   main {
     padding: 0 10px;
   }
@@ -248,6 +257,7 @@
   </nav>
 
   <main>
+  <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
     <section id="films" class="section">
       <h2>🎬 Films</h2>
       <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
@@ -305,9 +315,24 @@
     <section id="upcoming" class="section">
       <h2>🎞️ Upcoming Project</h2>
       <div class="upcoming-container" style="align-items: stretch;">
-  <div class="upcoming-poster" style="max-width: 360px; width: 100%; display: flex; align-items: center;">
-  <img src="_plakat.jpg" alt="Upcoming film poster" style="width: 96%; height: auto; border-radius: 8px; display: block; object-fit: cover; object-position: left; margin: auto;" />
+  <div class="upcoming-poster" style="max-width: 320px; width: 100%; display: flex; align-items: center; justify-content: center;">
+    <img src="_plakat.jpg" alt="Upcoming film poster" style="width: 96%; height: auto; border-radius: 8px; display: block; object-fit: cover; object-position: left; margin: auto;" />
+  </div>
+  <div class="upcoming-description mobile-only" style="display: none;">
+    <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
+  </div>
 </div>
+<style>
+  @media screen and (max-width: 768px) {
+    .upcoming-description.mobile-only {
+      display: block !important;
+      margin-top: 1rem;
+    }
+    .upcoming-container .upcoming-description:not(.mobile-only) {
+      display: none !important;
+    }
+  }
+</style>
   <div class="upcoming-description">
     <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
   </div>
@@ -319,7 +344,8 @@
   <p style="margin-bottom: 0.2rem;">📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
   <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
 </section>
-  </main>
+    </div>
+</main>
 
   <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
     © 2025 videouberwacht — All rights reserved.
