@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>videouberwacht</title>
   <style>
+    .menu {
+      display: flex;
+      gap: 1rem;
+    }
+    .hamburger {
+      display: none;
+    }
     html {
       background-color: #000;
     }
@@ -259,9 +266,9 @@
   <div class="nav-left">
     <img src="logo.png" alt="logo" />
     <span>videouberwacht</span>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    
   </div>
-  <div class="menu" id="mobileMenu">
+  <div class="menu">
     <a href="#films">🎬 Films</a>
     <a href="#gallery">📸 Gallery</a>
     <a href="#about">👤 About</a>
@@ -269,12 +276,7 @@
     <a href="#contact">📬 Contact</a>
   </div>
 </nav>
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('open');
-  }
-</script>
+
 
 
   <main>
