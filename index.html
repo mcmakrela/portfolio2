@@ -55,6 +55,7 @@
     iframe {
   width: 100%;
   aspect-ratio: 21 / 9;
+  height: 560px;
   margin: 40px auto;
   display: block;
   border-radius: 8px;
@@ -156,9 +157,10 @@
   display: block;
   box-sizing: border-box;
   background-color: #000;
-  outline: 1px solid #000;
+  outline: none;
   border: none;
-  image-rendering: pixelated;
+  object-fit: contain;
+  overflow: hidden;
 }
     .upcoming-description {
   max-width: 300px;
