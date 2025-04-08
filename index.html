@@ -51,7 +51,7 @@
     iframe {
       width: 100%;
       max-width: 1200px;
-      height: 360px;
+      height: 480px;
       margin: 0 auto 40px auto;
       display: block;
       border-radius: 8px;
@@ -127,9 +127,7 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-    }
-    #intro img {
-      width: 200px;
+      font-size: 5rem;
       animation: shake 0.6s ease-in-out infinite;
     }
     @keyframes shake {
@@ -147,14 +145,15 @@
         if (intro) {
           intro.style.display = 'none';
         }
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.add('visible');
+        });
       }, 1000);
     });
   </script>
 </head>
 <body>
-  <div id="intro">
-    <img src="clapboard.png" alt="Film Clapboard" />
-  </div>
+  <div id="intro">🎬</div>
 
   <nav>
     <div class="nav-left">
@@ -171,8 +170,72 @@
   </nav>
 
   <main>
-    <!-- Treść strony -->
-  </main>
+  <section id="films" class="section">
+    <h2>🎬 Films</h2>
+    <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+  </section>
+
+  <section id="gallery" class="section">
+    <h2>📸 Gallery</h2>
+    <div class="gallery-slideshow">
+      <img id="slideshowImage" src="2-1530wissewa1231.jpg" alt="Gallery image" />
+      <div class="gallery-controls">
+        <button onclick="changeSlide(-1)">&#10094;</button>
+        <button onclick="changeSlide(1)">&#10095;</button>
+      </div>
+    </div>
+    <script>
+      const slideshowImages = [
+        "R1-08878-0004[1].jpg", "36-1530wissewa1230.jpg", "8-8186kacper727.jpg", "30-1530wissewa1230.jpg",
+        "R1-03913-0035.JPG", "17-1836kacp6403.jpg", "11-1530wissewa1230.jpg", "R1-03913-0021.JPG",
+        "DSC06839.jpg", "31-1835kaeper6317.jpg", "R1-08880-016A[1].jpg", "15-1530wissewa1231.jpg",
+        "18-1530wissewa1230.jpg", "11-1836kacp6403.jpg", "R1-08878-0023[1].jpg", "R1-03913-0024.JPG",
+        "R1-08878-0015[1].jpg", "2-1530wissewa1231.jpg", "31-1530wissewa1231.jpg", "35-1836kacp6403.jpg",
+        "12-1836kacp6403.jpg", "R1-08878-0024[1].jpg", "DSC06575.jpg", "DSC06467.jpg",
+        "DSC06931.jpg", "R1-08880-002A[1].jpg"
+      ];
+      let currentIndex = 0;
+      const imgEl = document.getElementById("slideshowImage");
+
+      function showSlide(index) {
+        currentIndex = (index + slideshowImages.length) % slideshowImages.length;
+        imgEl.src = slideshowImages[currentIndex];
+      }
+
+      function changeSlide(offset) {
+        showSlide(currentIndex + offset);
+      }
+
+      setInterval(() => changeSlide(1), 5000);
+    </script>
+  </section>
+
+  <section id="about" class="section">
+    <h2>👤 About Me</h2>
+    <p>Kacper Wissuwa began his creative journey with stop-motion LEGO animations, gradually expanding into music videos and commercials. As his passion for storytelling evolved, he discovered documentary filmmaking—a space where emotion, aesthetics, and social relevance intersect. Early projects took him to Tbilisi and New York City, where he captured the spirit of place and people with a distinct visual voice. Today, Kacper explores the boundaries of identity, culture, and resilience through cinematic storytelling. His debut festival submission marks a new chapter in a career shaped by curiosity, empathy, and a drive to document the raw and real moments of life across the globe.</p>
+    <h2>🗺️ Places I've Filmed</h2>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+  </section>
+
+  <section id="upcoming" class="section">
+    <h2>🎞️ Upcoming Project</h2>
+    <div class="upcoming-container">
+      <img src="_plakat.jpg" alt="Upcoming film poster" class="upcoming-poster" />
+      <p class="upcoming-description"><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <h2>📬 Contact</h2>
+    <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+    <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
+  </section>
+</main>
 
   <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
     © 2025 videouberwacht — All rights reserved.
