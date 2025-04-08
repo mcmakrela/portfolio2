@@ -10,25 +10,26 @@
     }
     body {
       margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: #000;
       color: #fff;
       width: 100%;
-      max-width: 100vw;
       overflow-x: hidden;
       scroll-behavior: smooth;
     }
     main {
       padding: 20px;
-      max-width: 1200px;
+      max-width: 960px;
       margin: auto;
     }
     .section {
-      margin: 200px 0;
+      margin: 120px 0;
       opacity: 0;
       transform: translateY(40px);
       transition: opacity 0.6s ease, transform 0.6s ease;
       text-align: left;
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
     .section.visible {
       opacity: 1;
@@ -50,7 +51,6 @@
     }
     iframe {
       width: 100%;
-      max-width: 1200px;
       height: 480px;
       margin: 0 auto 40px auto;
       display: block;
@@ -96,25 +96,58 @@
       color: #f2a365;
       border-bottom: 2px solid #f2a365;
     }
+    .gallery-slideshow {
+      position: relative;
+      max-width: 720px;
+      margin: auto;
+    }
+    .gallery-slideshow img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .gallery-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .gallery-controls button {
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      pointer-events: auto;
+      border-radius: 8px;
+    }
     .upcoming-container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 2rem;
+      align-items: flex-start;
+      justify-content: center;
     }
     .upcoming-poster {
-      max-width: 320px;
+      max-width: 300px;
     }
     .upcoming-description {
-      max-width: 320px;
-      text-align: left;
+      max-width: 300px;
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
-    @media (min-width: 768px) {
-      .upcoming-container {
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-      }
+    .contact a {
+      color: #f2a365;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .contact a:hover {
+      color: #f78e52;
     }
     #intro {
       position: fixed;
@@ -128,7 +161,7 @@
       align-items: center;
       z-index: 9999;
       font-size: 5rem;
-      animation: shake 0.6s ease-in-out infinite;
+      animation: shake 0.6s ease-in-out;
     }
     @keyframes shake {
       0% { transform: rotate(0deg); }
@@ -141,14 +174,16 @@
   <script>
     window.addEventListener('load', () => {
       setTimeout(() => {
-        const intro = document.getElementById('intro');
-        if (intro) {
-          intro.style.display = 'none';
-        }
-        document.querySelectorAll('.section').forEach(section => {
-          section.classList.add('visible');
-        });
-      }, 1000);
+      const intro = document.getElementById('intro');
+      if (intro) {
+        intro.style.transition = 'opacity 0.5s ease';
+        intro.style.opacity = '0';
+        setTimeout(() => intro.style.display = 'none', 500);
+      }
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('visible');
+      });
+    }, 1000);
     });
   </script>
 </head>
@@ -170,75 +205,73 @@
   </nav>
 
   <main>
-  <section id="films" class="section">
-    <h2>🎬 Films</h2>
-    <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen loading="lazy"></iframe>
-  </section>
+    <section id="films" class="section">
+      <h2>🎬 Films</h2>
+      <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    </section>
 
-  <section id="gallery" class="section">
-    <h2>📸 Gallery</h2>
-    <div class="gallery-slideshow">
-      <img id="slideshowImage" src="2-1530wissewa1231.jpg" alt="Gallery image" />
-      <div class="gallery-controls">
-        <button onclick="changeSlide(-1)">&#10094;</button>
-        <button onclick="changeSlide(1)">&#10095;</button>
+    <section id="gallery" class="section">
+      <h2>📸 Gallery</h2>
+      <div class="gallery-slideshow">
+        <img id="slideshowImage" src="2-1530wissewa1231.jpg" alt="Gallery image" />
+        <div class="gallery-controls">
+          <button onclick="changeSlide(-1)">&#10094;</button>
+          <button onclick="changeSlide(1)">&#10095;</button>
+        </div>
       </div>
-    </div>
-    <script>
-      const slideshowImages = [
-        "R1-08878-0004[1].jpg", "36-1530wissewa1230.jpg", "8-8186kacper727.jpg", "30-1530wissewa1230.jpg",
-        "R1-03913-0035.JPG", "17-1836kacp6403.jpg", "11-1530wissewa1230.jpg", "R1-03913-0021.JPG",
-        "DSC06839.jpg", "31-1835kaeper6317.jpg", "R1-08880-016A[1].jpg", "15-1530wissewa1231.jpg",
-        "18-1530wissewa1230.jpg", "11-1836kacp6403.jpg", "R1-08878-0023[1].jpg", "R1-03913-0024.JPG",
-        "R1-08878-0015[1].jpg", "2-1530wissewa1231.jpg", "31-1530wissewa1231.jpg", "35-1836kacp6403.jpg",
-        "12-1836kacp6403.jpg", "R1-08878-0024[1].jpg", "DSC06575.jpg", "DSC06467.jpg",
-        "DSC06931.jpg", "R1-08880-002A[1].jpg"
-      ];
-      let currentIndex = 0;
-      const imgEl = document.getElementById("slideshowImage");
+      <script>
+        const slideshowImages = [
+          "R1-08878-0004[1].jpg", "36-1530wissewa1230.jpg", "8-8186kacper727.jpg", "30-1530wissewa1230.jpg",
+          "R1-03913-0035.JPG", "17-1836kacp6403.jpg", "11-1530wissewa1230.jpg", "R1-03913-0021.JPG",
+          "DSC06839.jpg", "31-1835kaeper6317.jpg", "R1-08880-016A[1].jpg", "15-1530wissewa1231.jpg",
+          "18-1530wissewa1230.jpg", "11-1836kacp6403.jpg", "R1-08878-0023[1].jpg", "R1-03913-0024.JPG",
+          "R1-08878-0015[1].jpg", "2-1530wissewa1231.jpg", "31-1530wissewa1231.jpg", "35-1836kacp6403.jpg",
+          "12-1836kacp6403.jpg", "R1-08878-0024[1].jpg", "DSC06575.jpg", "DSC06467.jpg",
+          "DSC06931.jpg", "R1-08880-002A[1].jpg"
+        ];
+        let currentIndex = 0;
+        const imgEl = document.getElementById("slideshowImage");
 
-      function showSlide(index) {
-        currentIndex = (index + slideshowImages.length) % slideshowImages.length;
-        imgEl.src = slideshowImages[currentIndex];
-      }
+        function showSlide(index) {
+          currentIndex = (index + slideshowImages.length) % slideshowImages.length;
+          imgEl.src = slideshowImages[currentIndex];
+        }
 
-      function changeSlide(offset) {
-        showSlide(currentIndex + offset);
-      }
+        function changeSlide(offset) {
+          showSlide(currentIndex + offset);
+        }
 
-      setInterval(() => changeSlide(1), 5000);
-    </script>
-  </section>
+        setInterval(() => changeSlide(1), 5000);
+      </script>
+    </section>
 
-  <section id="about" class="section">
-    <h2>👤 About Me</h2>
-    <p>Kacper Wissuwa began his creative journey with stop-motion LEGO animations, gradually expanding into music videos and commercials. As his passion for storytelling evolved, he discovered documentary filmmaking—a space where emotion, aesthetics, and social relevance intersect. Early projects took him to Tbilisi and New York City, where he captured the spirit of place and people with a distinct visual voice. Today, Kacper explores the boundaries of identity, culture, and resilience through cinematic storytelling. His debut festival submission marks a new chapter in a career shaped by curiosity, empathy, and a drive to document the raw and real moments of life across the globe.</p>
-    <h2>🗺️ Places I've Filmed</h2>
-    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
-  </section>
+    <section id="about" class="section">
+      <h2>👤 About Me</h2>
+      <p>Kacper Wissuwa began his creative journey with stop-motion LEGO animations, gradually expanding into music videos and commercials. As his passion for storytelling evolved, he discovered documentary filmmaking—a space where emotion, aesthetics, and social relevance intersect. Early projects took him to Tbilisi and New York City, where he captured the spirit of place and people with a distinct visual voice. Today, Kacper explores the boundaries of identity, culture, and resilience through cinematic storytelling. His debut festival submission marks a new chapter in a career shaped by curiosity, empathy, and a drive to document the raw and real moments of life across the globe.</p>
+      <h2>🗺️ Places I've Filmed</h2>
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+    </section>
 
-  <section id="upcoming" class="section">
-    <h2>🎞️ Upcoming Project</h2>
-    <div class="upcoming-container">
-      <img src="_plakat.jpg" alt="Upcoming film poster" class="upcoming-poster" />
-      <p class="upcoming-description"><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
-    </div>
-  </section>
+    <section id="upcoming" class="section">
+      <h2>🎞️ Upcoming Project</h2>
+      <div class="upcoming-container">
+        <img src="_plakat.jpg" alt="Upcoming film poster" class="upcoming-poster" />
+        <p class="upcoming-description"><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
+      </div>
+    </section>
 
-  <section id="contact" class="section contact">
-    <h2>📬 Contact</h2>
-    <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
-    <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
-  </section>
-</main>
+    <section id="contact" class="section contact">
+      <h2>📬 Contact</h2>
+      <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+      <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
+    </section>
+  </main>
 
   <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
     © 2025 videouberwacht — All rights reserved.
   </footer>
-</body>
-</html>
