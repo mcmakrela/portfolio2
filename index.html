@@ -189,60 +189,23 @@
       100% { transform: rotate(0deg); }
     }
       @media screen and (max-width: 768px) {
-  .nav-left {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .menu {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 1rem;
-  }
-  .nav-left {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  .menu {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  main {
-    padding: 0 10px;
-  }
-      body {
-        font-size: 1rem;
-      }
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .menu {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      .upcoming-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      .upcoming-poster, .upcoming-description {
-        max-width: 100%;
-        width: 100%;
-      }
-      .gallery-slideshow img {
-        height: auto;
-        width: 100%;
-      }
-      iframe {
-        aspect-ratio: 16 / 9;
-        height: auto;
-      }
+
+  @media screen and (max-width: 768px) {
+    .hamburger {
+      display: block;
+      margin-left: auto;
     }
-  </style>
+    .menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+    }
+    .menu.open {
+      display: flex;
+    }
+  }
+</style>
   <script>
   window.addEventListener('load', () => {
     document.querySelectorAll('.section').forEach(section => {
@@ -255,18 +218,20 @@
   
 
   <nav>
-    <div class="nav-left">
-      <img src="logo.png" alt="logo" />
-      <span>videouberwacht</span>
-    </div>
-    <div class="menu">
-      <a href="#films">🎬 Films</a>
-      <a href="#gallery">📸 Gallery</a>
-      <a href="#about">👤 About</a>
-      <a href="#upcoming">🎞️ Upcoming</a>
-      <a href="#contact">📬 Contact</a>
-    </div>
-  </nav>
+  <div class="nav-left">
+    <img src="logo.png" alt="logo" />
+    <span>videouberwacht</span>
+    
+  </div>
+  <div class="menu" id="mobileMenu" style="display: flex;">
+    <a href="#films">🎬 Films</a>
+    <a href="#gallery">📸 Gallery</a>
+    <a href="#about">👤 About</a>
+    <a href="#upcoming">🎞️ Upcoming</a>
+    <a href="#contact">📬 Contact</a>
+  </div>
+</nav>
+
 
   <main>
   <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
