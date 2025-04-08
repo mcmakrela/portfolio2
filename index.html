@@ -98,6 +98,8 @@
       display: block;
       border-radius: 8px;
     }
+    [lang] { display: none; }
+    [lang="en"] { display: block; }
 </style>
 </head>
 <body>
@@ -128,38 +130,38 @@
   </nav>
 
   <main>
-  <div lang="en">
-    <section id="films" class="section">
+  <div lang="en" style="display: block;">
+    <section class="section">
       <h2>🎬 Films</h2>
       <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
       <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen loading="lazy"></iframe>
     </section>
-    <section id="gallery" class="section">
+    <section class="section">
       <h2>📸 Gallery</h2>
       <div class="gallery-grid">
         <img src="2-1530wissewa1231.jpg" alt="Urban portrait scene" loading="lazy" />
         <img src="8-8186kacper727.jpg" alt="Street shot at sunset" loading="lazy" />
       </div>
     </section>
-    <section id="about" class="section">
+    <section class="section">
       <h2>👤 About Me</h2>
       <p>Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
     </section>
-    <section id="upcoming" class="section">
+    <section class="section">
       <h2>🎞️ Upcoming Project</h2>
       <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine...</p>
     </section>
-    <section id="map" class="section">
+    <section class="section">
       <h2>🗺️ Places I've Filmed</h2>
       <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
     </section>
-    <section id="contact" class="section">
+    <section class="section">
       <h2>📬 Contact</h2>
       <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
       <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
     </section>
   </div>
-  <div lang="pl" style="display: none;">
+  <div lang="pl" style="display: none;" data-lang="pl">
   <section id="films" class="section">
     <h2>🎬 Filmy</h2>
     <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
@@ -190,7 +192,7 @@
     <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
   </section>
 </div>
-  <div lang="de" style="display: none;">
+  <div lang="de" style="display: none;" data-lang="de">
   <section id="films" class="section">
     <h2>🎬 Filme</h2>
     <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
