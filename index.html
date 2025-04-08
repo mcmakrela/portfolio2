@@ -98,19 +98,11 @@
       display: block;
       border-radius: 8px;
     }
-    [lang] { display: none; }
-    [lang="en"] { display: block; }
+    
 </style>
 </head>
 <body>
-  <div class="language-switcher-container">
-    <div class="language-switcher">
-      🌐
-      <div class="language-options">
-        <a href="#" onclick="switchLanguage('en')">🇬🇧</a>
-        <a href="#" onclick="switchLanguage('pl')">🇵🇱</a>
-        <a href="#" onclick="switchLanguage('de')">🇩🇪</a>
-      </div>
+  
     </div>
   </div>
 
@@ -161,18 +153,7 @@
       <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
     </section>
   </div>
-  <div lang="pl" style="display: none;" data-lang="pl">
-  <section class="section">
-    <h2>🎬 Filmy</h2>
-    <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen loading="lazy"></iframe>
-  </section>
-  <section class="section">
-    <h2>📸 Galeria</h2>
-    <div class="gallery-grid">
-      <img src="2-1530wissewa1231.jpg" alt="Portret miejski" loading="lazy" />
-      <img src="8-8186kacper727.jpg" alt="Ulica o zachodzie słońca" loading="lazy" />
-    </div>
+  
   </section>
   <section class="section">
     <h2>👤 O mnie</h2>
@@ -192,18 +173,7 @@
     <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
   </section>
 </div>
-  <div lang="de" style="display: none;" data-lang="de">
-  <section class="section">
-    <h2>🎬 Filme</h2>
-    <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen loading="lazy"></iframe>
-  </section>
-  <section class="section">
-    <h2>📸 Galerie</h2>
-    <div class="gallery-grid">
-      <img src="2-1530wissewa1231.jpg" alt="Städtisches Porträt" loading="lazy" />
-      <img src="8-8186kacper727.jpg" alt="Straßenszene bei Sonnenuntergang" loading="lazy" />
-    </div>
+  
   </section>
   <section class="section">
     <h2>👤 Über mich</h2>
@@ -229,32 +199,7 @@
     © 2025 videouberwacht — All rights reserved.
   </footer>
 
-  <script>
-    const languageBlocks = document.querySelectorAll('[lang]');
-    function switchLanguage(lang) {
-      languageBlocks.forEach(block => {
-        block.style.display = block.lang === lang ? 'block' : 'none';
-      });
-      localStorage.setItem('preferredLang', lang);
-
-      const navLabels = {
-        en: ['🎬 Films', '📸 Gallery', '👤 About', '🎞️ Upcoming', '🗺️ Places', '📬 Contact'],
-        pl: ['🎬 Filmy', '📸 Galeria', '👤 O mnie', '🎞️ Nadchodzące', '🗺️ Miejsca', '📬 Kontakt'],
-        de: ['🎬 Filme', '📸 Galerie', '👤 Über mich', '🎞️ Kommend', '🗺️ Orte', '📬 Kontakt']
-      };
-
-      const menuLinks = document.querySelectorAll('.menu a');
-      navLabels[lang].forEach((label, i) => {
-        if (menuLinks[i]) menuLinks[i].textContent = label;
-      });
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('preferredLang') || navigator.language.slice(0, 2);
-      const supportedLangs = ['en', 'pl', 'de'];
-      switchLanguage(supportedLangs.includes(savedLang) ? savedLang : 'en');
-    });
-  </script>
+  
 
   <style>
     .language-switcher-container {
