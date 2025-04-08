@@ -205,6 +205,44 @@
       display: flex;
     }
   }
+  .hamburger {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+    .menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .menu.open {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .nav-left {
+      flex-direction: row;
+      width: 100%;
+      align-items: center;
+    }
+    .nav-left img {
+      margin-right: 10px;
+    }
+  }
 </style>
   <script>
   window.addEventListener('load', () => {
@@ -221,9 +259,9 @@
   <div class="nav-left">
     <img src="logo.png" alt="logo" />
     <span>videouberwacht</span>
-    
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
   </div>
-  <div class="menu" id="mobileMenu" style="display: flex;">
+  <div class="menu" id="mobileMenu">
     <a href="#films">🎬 Films</a>
     <a href="#gallery">📸 Gallery</a>
     <a href="#about">👤 About</a>
@@ -231,6 +269,12 @@
     <a href="#contact">📬 Contact</a>
   </div>
 </nav>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+  }
+</script>
 
 
   <main>
