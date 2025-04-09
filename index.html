@@ -163,7 +163,36 @@
       min-width: 250px;
       white-space: pre-line;
     }
-  </style>
+      @media (max-width: 768px) {
+      .nav-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      .menu.show {
+        display: flex;
+      }
+      .menu a {
+        padding: 0.5rem 0;
+        border-bottom: none;
+      }
+      .hamburger {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    }
+    .hamburger {
+      display: none;
+    }
 </head>
 <body>
   <div style="max-width: 1200px; margin: 0 auto;">
@@ -180,6 +209,7 @@
   </script>
   <nav>
   <div class="nav-wrapper">
+    <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
     <div class="nav-left">
     <img src="logo.png" alt="logo" />
     <span>videouberwacht</span>
@@ -267,6 +297,12 @@
       showSlide(currentIndex + offset);
     }
     setInterval(() => changeSlide(1), 3000);
+  </script>
+<script>
+    function toggleMenu() {
+      const menu = document.querySelector('.menu');
+      menu.classList.toggle('show');
+    }
   </script>
 </body>
 </html>
