@@ -68,11 +68,12 @@
       text-align: center;
     }
     .gallery-slideshow img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
     .gallery-controls {
       position: absolute;
       top: 50%;
@@ -170,6 +171,10 @@
       white-space: pre-line;
     }
     @media screen and (max-width: 768px) {
+  .gallery-slideshow img {
+    height: 250px;
+    object-fit: cover;
+  }
       .nav-left {
         flex: 1;
       }
@@ -251,15 +256,15 @@
         <img src="logo.png" alt="logo" />
         <span>videouberwacht</span>
       </div>
-      <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">☰</button>
       
-      <div class="menu" id="mobileMenu">
+      
+      <div class="menu">
     <a href="#films">🎬 Films</a>
     <a href="#gallery">📸 Gallery</a>
     <a href="#about">👤 About</a>
     <a href="#upcoming">🎞️ Upcoming</a>
     <a href="#contact">📬 Contact</a>
-  </div>
+</div>
 </div>
 </nav>
   <main>
@@ -326,12 +331,7 @@
     scrollBtn.onclick = function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
-    function toggleMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const hamburgerBtn = document.getElementById("hamburgerBtn");
-  const isOpen = menu.classList.toggle("show");
-  hamburgerBtn.textContent = isOpen ? "✖" : "☰";
-}
+    
       const slideshowImages = [
       "2-1530wissewa1231.jpg", "8-8186kacper727.jpg", "11-1530wissewa1230.jpg", "11-1836kacp6403.jpg",
       "12-1836kacp6403.jpg", "15-1530wissewa1231.jpg", "17-1836kacp6403.jpg", "18-1530wissewa1230.jpg",
