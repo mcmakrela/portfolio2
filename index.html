@@ -69,9 +69,8 @@
     }
     .gallery-slideshow img {
       width: 100%;
-      height: auto;
-      max-height: 70vh;
-      object-fit: contain;
+      height: 300px;
+      object-fit: cover;
       border-radius: 8px;
     }
     .gallery-controls {
@@ -125,6 +124,7 @@
       color: white;
       font-size: 2rem;
       cursor: pointer;
+      z-index: 2000;
     }
     .menu {
       display: flex;
@@ -186,13 +186,17 @@
       .menu {
         display: none;
         flex-direction: column;
+        align-items: flex-start;
         width: 100%;
         background-color: #111;
         margin-top: 1rem;
+        padding: 1rem 0;
+        border-top: 1px solid #333;
       }
       .menu a {
         display: block;
-        padding: 0.75rem 1rem;
+        width: 100%;
+        padding: 0.75rem 1.5rem;
         border-top: 1px solid #222;
         border-bottom: 1px solid #000;
       }
@@ -203,6 +207,10 @@
         aspect-ratio: 16 / 9;
         height: auto;
       }
+      .gallery-slideshow img {
+        height: 250px;
+        object-fit: cover;
+      }
       .upcoming-wrapper {
         flex-direction: column;
         align-items: center;
@@ -211,9 +219,6 @@
       .upcoming-wrapper .description {
         max-width: 100%;
         width: 100%;
-      }
-      .gallery-slideshow {
-        max-width: 100%;
       }
       .gallery-controls button {
         font-size: 1.2rem;
@@ -240,7 +245,7 @@
         <img src="logo.png" alt="logo" />
         <span>videouberwacht</span>
       </div>
-      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">☰</button>
       <div class="menu" id="mobileMenu">
         <a href="#films">🎬 Films</a>
         <a href="#gallery">📸 Gallery</a>
@@ -315,9 +320,11 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
     function toggleMenu() {
-      const menu = document.getElementById("mobileMenu");
-      menu.classList.toggle("show");
-    }
+  const menu = document.getElementById("mobileMenu");
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const isOpen = menu.classList.toggle("show");
+  hamburgerBtn.textContent = isOpen ? "✖" : "☰";
+}
       const slideshowImages = [
       "2-1530wissewa1231.jpg", "8-8186kacper727.jpg", "11-1530wissewa1230.jpg", "11-1836kacp6403.jpg",
       "12-1836kacp6403.jpg", "15-1530wissewa1231.jpg", "17-1836kacp6403.jpg", "18-1530wissewa1230.jpg",
