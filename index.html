@@ -106,7 +106,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
     }
     .nav-left {
       display: flex;
@@ -119,6 +118,14 @@
     .nav-left span {
       font-size: 1.2rem;
       color: white;
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
     }
     .menu {
       display: flex;
@@ -163,14 +170,6 @@
       min-width: 250px;
       white-space: pre-line;
     }
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-    }
     @media screen and (max-width: 768px) {
       body, main {
         padding: 1rem;
@@ -183,9 +182,12 @@
         line-height: 1.6;
       }
       .nav-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .hamburger {
+        display: block;
       }
       .menu {
         display: none;
@@ -202,9 +204,6 @@
       }
       .menu.show {
         display: flex;
-      }
-      .hamburger {
-        display: block;
       }
       iframe {
         aspect-ratio: 16 / 9;
@@ -248,17 +247,17 @@
         <span>videouberwacht</span>
       </div>
       <button class="hamburger" onclick="toggleMenu()">☰</button>
-      <div class="menu" id="mobileMenu">
-        <a href="#films">🎬 Films</a>
-        <a href="#gallery">📸 Gallery</a>
-        <a href="#about">👤 About</a>
-        <a href="#upcoming">🎞️ Upcoming</a>
-        <a href="#contact">📬 Contact</a>
-      </div>
+    </div>
+    <div class="menu" id="mobileMenu">
+      <a href="#films">🎬 Films</a>
+      <a href="#gallery">📸 Gallery</a>
+      <a href="#about">👤 About</a>
+      <a href="#upcoming">🎞️ Upcoming</a>
+      <a href="#contact">📬 Contact</a>
     </div>
   </nav>
   <main>
-    <!-- Your main content remains the same as before -->
+    <!-- Pełna treść pozostaje bez zmian z Twojej wersji desktopowej -->
   </main>
   <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
     © 2025 videouberwacht — All rights reserved.
@@ -275,17 +274,6 @@
       const menu = document.getElementById("mobileMenu");
       menu.classList.toggle("show");
     }
-    const slideshowImages = ["2-1530wissewa1231.jpg", "8-8186kacper727.jpg", "11-1530wissewa1230.jpg", "11-1836kacp6403.jpg", "12-1836kacp6403.jpg", "15-1530wissewa1231.jpg", "17-1836kacp6403.jpg", "18-1530wissewa1230.jpg", "30-1530wissewa1230.jpg", "31-1530wissewa1231.jpg", "31-1835kaeper6317.jpg", "35-1836kacp6403.jpg", "36-1530wissewa1230.jpg", "DSC06467.jpg", "DSC06575.jpg", "DSC06839.jpg", "DSC06931.jpg", "R1-02155-004A.jpg", "R1-03913-0021.JPG", "R1-03913-0024.JPG", "R1-03913-0035.JPG", "R1-08878-0004[1].jpg", "R1-08878-0015[1].jpg", "R1-08878-0023[1].jpg", "R1-08878-0024[1].jpg", "R1-08880-002A[1].jpg", "R1-08880-016A[1].jpg"];
-    let currentIndex = 0;
-    const imgEl = document.getElementById("slideshowImage");
-    function showSlide(index) {
-      currentIndex = (index + slideshowImages.length) % slideshowImages.length;
-      imgEl.src = slideshowImages[currentIndex];
-    }
-    function changeSlide(offset) {
-      showSlide(currentIndex + offset);
-    }
-    setInterval(() => changeSlide(1), 3000);
   </script>
 </body>
 </html>
