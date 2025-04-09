@@ -4,55 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>videouberwacht</title>
-  <link rel="icon" type="image/png" href="logo.png">
   <style>
-    .menu {
-      display: flex;
-      gap: 1rem;
-    }
-    .hamburger {
-      display: none;
-    }
     html {
       background-color: #000;
     }
     body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: #000;
-  color: #fff;
-  width: 100vw;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  padding-top: 0;
-}
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #000;
+      color: #fff;
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
     main {
-  padding: 0 40px;
-  max-width: 1280px;
-  margin: 0 auto;
-  overflow: hidden;
-  text-align: center;
-  box-sizing: border-box;
-}
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
     .section {
-  margin: 80px 0;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  text-align: justify;
-  font-size: 1.15rem;
-  line-height: 1.8;
-}
+      margin-bottom: 150px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      text-align: left;
+    }
     .section.visible {
       opacity: 1;
       transform: translateY(0);
     }
     h2 {
-  font-size: 2em;
-  margin-bottom: 1em;
-  text-align: left;
-  margin-left: 0;
-}
+      font-size: 2em;
+      margin-bottom: 0.5em;
+      text-align: left;
+    }
     h2::after {
       content: '';
       display: block;
@@ -63,27 +49,59 @@
       opacity: 0.5;
     }
     iframe {
-  width: 100%;
-  aspect-ratio: 21 / 9;
-  margin: 40px auto;
-  display: block;
-  border-radius: 8px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-}
+      width: 100%;
+      max-width: 1200px;
+      height: 360px;
+      margin: 0 auto 40px auto;
+      display: block;
+      border-radius: 8px;
+    }
+    .gallery-slideshow {
+      width: 100%;
+      max-width: 960px;
+      margin: auto;
+      position: relative;
+      text-align: center;
+    }
+    .gallery-slideshow img {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+      transition: opacity 0.5s ease;
+    }
+    .gallery-controls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .gallery-controls button {
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      pointer-events: auto;
+    }
     nav {
-  width: 100%;
-  background-color: #111;
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-}
+      width: 100%;
+      background-color: #111;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
     .nav-left {
       display: flex;
       align-items: center;
@@ -112,230 +130,36 @@
       color: #f2a365;
       border-bottom: 2px solid #f2a365;
     }
-    .gallery-slideshow {
-      position: relative;
-      max-width: 720px;
-      margin: auto;
+    .section img[src*="_plakat"] {
+      max-width: 100%;
+      border-radius: 8px;
     }
-    .gallery-slideshow img {
-  height: 500px;
-  width: auto;
-  max-width: 100%;
-  object-fit: cover;
-  margin: auto;
-  display: block;
-  border-radius: 8px;
-  will-change: opacity, transform;
-  transition: opacity 0.4s ease;
-  backface-visibility: hidden;
-}
-    .gallery-controls {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: space-between;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-    .gallery-controls button {
-  background: rgba(0, 0, 0, 0.25);
-  border: none;
-  color: white;
-  font-size: 1.25rem;
-  padding: 0.2rem 0.5rem;
-  cursor: pointer;
-  pointer-events: auto;
-  border-radius: 4px;
-  transition: background 0.3s ease;
-}
-.gallery-controls button:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-    .upcoming-container {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 2rem;
-  text-align: left;
-}
-    .upcoming-poster {
-  max-width: 300px;
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-  background-color: #000;
-  outline: none;
-  border: none;
-  object-fit: contain;
-  overflow: hidden;
-}
-    .upcoming-description {
-  max-width: 300px;
-  width: 100%;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 0;
-  text-align: justify;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
     .contact a {
       color: #f2a365;
       font-weight: bold;
-      text-decoration: none;
     }
     .contact a:hover {
       color: #f78e52;
     }
-    
-    
-      25% { transform: rotate(3deg); }
-      50% { transform: rotate(0deg); }
-      75% { transform: rotate(-3deg); }
-      100% { transform: rotate(0deg); }
-    }
-      @media screen and (max-width: 768px) {
-
-  @media screen and (max-width: 768px) {
-    .hamburger {
-      display: block;
-      margin-left: auto;
-    }
-    .menu {
-      display: none;
-      flex-direction: column;
-      gap: 0.5rem;
-      width: 100%;
-    }
-    .menu.open {
+    .upcoming-wrapper {
       display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: flex-start;
     }
-  }
-  .hamburger {
-    display: none;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    margin-left: auto;
-  }
-
-  @media screen and (max-width: 768px) {
-    .hamburger {
-      display: block;
+    .upcoming-wrapper .poster {
+      flex: 1 1 300px;
+      max-width: 400px;
     }
-    .menu {
-      display: none;
-      flex-direction: column;
-      gap: 0.5rem;
-      width: 100%;
-      margin-top: 1rem;
+    .upcoming-wrapper .description {
+      flex: 2;
+      min-width: 250px;
     }
-    .menu.open {
-      display: flex;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .nav-left {
-      flex-direction: row;
-      width: 100%;
-      align-items: center;
-    }
-    .nav-left img {
-      margin-right: 10px;
-    }
-  }
-</style>
-  <script>
-  window.addEventListener('load', () => {
-    document.querySelectorAll('.section').forEach(section => {
-      section.classList.add('visible');
-    });
-  });
-</script>
+  </style>
 </head>
 <body>
-  
-
-  <nav>
-  <div class="nav-left">
-    <img src="logo.png" alt="logo" />
-    <span>videouberwacht</span>
-    
-  </div>
-  <div class="menu">
-    <a href="#films">🎬 Films</a>
-    <a href="#gallery">📸 Gallery</a>
-    <a href="#about">👤 About</a>
-    <a href="#upcoming">🎞️ Upcoming</a>
-    <a href="#contact">📬 Contact</a>
-  </div>
-</nav>
-
-
-
-  <main>
-  <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-    <section id="films" class="section">
-  <h2>🎬 Films</h2>
-  
-  <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
-  <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen loading="lazy"></iframe>
-  <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen loading="lazy"></iframe>
-  <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen loading="lazy"></iframe>
-  <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen loading="lazy"></iframe>
-  <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen loading="lazy"></iframe>
-</section>
-
-    <section id="gallery" class="section">
-  <h2>📸 Gallery</h2>
-    <div class="gallery-slideshow">
-    <img id="slideshowImage" src="2-1530wissewa1231.jpg" alt="Gallery image" />
-    <div class="gallery-controls">
-      <button onclick="changeSlide(-1)">&#10094;</button>
-      <button onclick="changeSlide(1)">&#10095;</button>
-    </div>
-  </div>
-</section>
-
-    <section id="about" class="section">
-  <h2>👤 About Me</h2>
-  <p>Kacper Wissuwa began his creative journey with stop-motion LEGO animations, gradually expanding into music videos and commercials. As his passion for storytelling evolved, he discovered documentary filmmaking—a space where emotion, aesthetics, and social relevance intersect. Early projects took him to Tbilisi and New York City, where he captured the spirit of place and people with a distinct visual voice. Today, Kacper explores the boundaries of identity, culture, and resilience through cinematic storytelling. His debut festival submission marks a new chapter in a career shaped by curiosity, empathy, and a drive to document the raw and real moments of life across the globe.</p>
-  <h2>🗺️ Places I've Filmed</h2>
-  <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="400" style="border:0; border-radius: 8px; max-width: 900px; display: block; margin: auto;" allowfullscreen loading="lazy"></iframe>
-</section>
-
-    <section id="upcoming" class="section">
-  <h2>🎞️ Upcoming Project</h2>
-    <div class="upcoming-container" style="align-items: stretch;">
-    <div class="upcoming-poster" style="max-width: 320px; width: 100%; display: flex; align-items: center; justify-content: center;">
-      <img src="_plakat.jpg" alt="Upcoming film poster" style="width: 96%; height: auto; border-radius: 8px; display: block; object-fit: cover; object-position: left; margin: auto;" />
-    </div>
-    <div class="upcoming-description" style="max-width: 300px; width: 100%; font-size: 1.1rem; line-height: 1.6; margin: 0; text-align: justify; display: flex; flex-direction: column; justify-content: center;">
-      <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
-    </div>
-  </div>
-</section>
-
-    <section id="contact" class="section contact">
-  <h2>📬 Contact</h2>
-  <p style="max-width: 1080px; margin: 0 auto 1rem; text-align: justify; font-size: 1.15rem; line-height: 1.8;">For collaboration, film commissions, or project inquiries — feel free to get in touch via email or Instagram:</p>
-  <p style="margin-bottom: 0.2rem;">📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
-  <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
-</section>
-    </div>
-</main>
-
-  <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
-    © 2025 videouberwacht — All rights reserved.
-  <button id="scrollTopBtn" title="Go to top" style="position: fixed; bottom: 30px; right: 30px; background-color: #f2a365; color: #000; border: none; padding: 10px 14px; font-size: 18px; border-radius: 8px; cursor: pointer; display: none; z-index: 999;">↑</button>
+<!-- Scroll to top button -->
+<button id="scrollTopBtn" title="Back to top" style="position: fixed; bottom: 30px; right: 30px; z-index: 1000; background-color: #f2a365; color: #000; border: none; padding: 12px 16px; font-size: 18px; border-radius: 8px; cursor: pointer; display: none;">↑</button>
 <script>
   const scrollBtn = document.getElementById("scrollTopBtn");
   window.onscroll = function () {
@@ -345,3 +169,94 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 </script>
+<main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('visible');
+      });
+    });
+  </script>
+  <nav>
+    <div class="nav-left">
+      <img src="logo.png" alt="logo" />
+      <span>videouberwacht</span>
+    </div>
+    <div class="menu">
+      <a href="#films">🎬 Films</a>
+      <a href="#gallery">📸 Gallery</a>
+      <a href="#about">👤 About</a>
+      <a href="#upcoming">🎞️ Upcoming</a>
+      <a href="#contact">📬 Contact</a>
+    </div>
+  </nav>
+  <section id="films" class="section">
+    <h2>🎬 Films</h2>
+    <iframe src="https://www.youtube.com/embed/WtEnBBXxVfw" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/dG_qtSOt2iA" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/p3b10w9Ona4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/7tlcSo3khSU" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/oGLswQXQzQE" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.youtube.com/embed/OJp23p8qXL4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+  </section>
+  <section id="gallery" class="section">
+    <h2>📸 Gallery</h2>
+    <div class="gallery-slideshow">
+      <img id="slideshowImage" src="2-1530wissewa1231.jpg" alt="Gallery image" />
+      <div class="gallery-controls">
+        <button onclick="changeSlide(-1)">&#10094;</button>
+        <button onclick="changeSlide(1)">&#10095;</button>
+      </div>
+    </div>
+    <script>
+      const slideshowImages = [
+        "2-1530wissewa1231.jpg","8-8186kacper727.jpg","11-1530wissewa1230.jpg","11-1836kacp6403.jpg","12-1836kacp6403.jpg","15-1530wissewa1231.jpg",
+        "17-1836kacp6403.jpg","18-1530wissewa1230.jpg","30-1530wissewa1230.jpg","31-1530wissewa1231.jpg","31-1835kaeper6317.jpg","35-1836kacp6403.jpg",
+        "36-1530wissewa1230.jpg","DSC06467.jpg","DSC06575.jpg","DSC06839.jpg","DSC06931.jpg","R1-02155-004A.jpg","R1-03913-0021.JPG","R1-03913-0024.JPG",
+        "R1-03913-0035.JPG","R1-08878-0004[1].jpg","R1-08878-0015[1].jpg","R1-08878-0023[1].jpg","R1-08878-0024[1].jpg","R1-08880-002A[1].jpg",
+        "R1-08880-016A[1].jpg"
+      ];
+      let currentIndex = 0;
+      const imgEl = document.getElementById("slideshowImage");
+      function showSlide(index) {
+        currentIndex = (index + slideshowImages.length) % slideshowImages.length;
+        imgEl.style.opacity = 0;
+        setTimeout(() => {
+          imgEl.src = slideshowImages[currentIndex];
+          imgEl.style.opacity = 1;
+        }, 300);
+      }
+      function changeSlide(offset) {
+        showSlide(currentIndex + offset);
+      }
+      setInterval(() => changeSlide(1), 5000);
+    </script>
+  </section>
+  <section id="about" class="section">
+    <h2>👤 About Me</h2>
+    <p>Kacper Wissuwa is a filmmaker and visual storyteller. He produces documentaries, commercials, and branded content. His work explores subcultures, social change, and personal identity — always with a human, emotional perspective and a distinct visual style.</p>
+    <h2>🗺️ Places I've Filmed</h2>
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YC5dPIk5IDtGD0MmEGPgMtqwT2g81DY&ehbc=2E312F" width="100%" height="480" style="border:0; border-radius: 8px; max-width: 900px;" allowfullscreen loading="lazy"></iframe>
+  </section>
+  <section id="upcoming" class="section">
+    <h2>🎞️ Upcoming Project</h2>
+    <div class="upcoming-wrapper">
+      <div class="poster">
+        <img src="_plakat.jpg" alt="Upcoming film poster" />
+      </div>
+      <div class="description">
+        <p><strong>Under the Same Sky</strong> follows a Polish filmmaker’s journey to Ukraine, two years after the full-scale invasion began. Visiting Kyiv for the first time, he captures the resilience of civilians striving for normalcy amidst war. Through interviews with artists who chose to stay or return, the film explores their motivations, fears, and hopes, revealing how creativity and determination endure even in the darkest times. A poignant reflection on life under threat, it contrasts the fragile peace of the sky with the harsh realities of conflict, offering a powerful, human perspective on survival and hope.</p>
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="section contact">
+    <h2>📬 Contact</h2>
+    <p>📧 <a href="mailto:kacper.wissuwa@videouberwacht.com">kacper.wissuwa@videouberwacht.com</a></p>
+    <p>📸 <a href="https://instagram.com/mcmakrela" target="_blank">@mcmakrela</a></p>
+  </section>
+</main>
+<footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
+  © 2025 videouberwacht — All rights reserved.
+</footer>
+</body>
+</html>
