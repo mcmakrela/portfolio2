@@ -33,6 +33,9 @@
     }
     .section p {
       text-align: justify;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      font-family: 'Georgia', serif;
     }
     h2 {
       font-size: 2em;
@@ -69,7 +72,8 @@
       max-height: 70vh;
       object-fit: contain;
       border-radius: 8px;
-      transition: none;
+      transition: opacity 0.6s ease-in-out;
+      opacity: 1;
     }
     .gallery-controls {
       position: absolute;
@@ -203,25 +207,6 @@
           <button onclick="changeSlide(1)">&#10095;</button>
         </div>
       </div>
-      <script>
-        const slideshowImages = [
-          "2-1530wissewa1231.jpg", "8-8186kacper727.jpg", "11-1530wissewa1230.jpg", "11-1836kacp6403.jpg", "12-1836kacp6403.jpg", "15-1530wissewa1231.jpg",
-          "17-1836kacp6403.jpg", "18-1530wissewa1230.jpg", "30-1530wissewa1230.jpg", "31-1530wissewa1231.jpg", "31-1835kaeper6317.jpg", "35-1836kacp6403.jpg",
-          "36-1530wissewa1230.jpg", "DSC06467.jpg", "DSC06575.jpg", "DSC06839.jpg", "DSC06931.jpg", "R1-02155-004A.jpg", "R1-03913-0021.JPG", "R1-03913-0024.JPG",
-          "R1-03913-0035.JPG", "R1-08878-0004[1].jpg", "R1-08878-0015[1].jpg", "R1-08878-0023[1].jpg", "R1-08878-0024[1].jpg", "R1-08880-002A[1].jpg",
-          "R1-08880-016A[1].jpg"
-        ];
-        let currentIndex = 0;
-        const imgEl = document.getElementById("slideshowImage");
-        function showSlide(index) {
-          currentIndex = (index + slideshowImages.length) % slideshowImages.length;
-          imgEl.src = slideshowImages[currentIndex];
-        }
-        function changeSlide(offset) {
-          showSlide(currentIndex + offset);
-        }
-        setInterval(() => changeSlide(1), 5000);
-      </script>
     </section>
     <section id="about" class="section">
       <h2>👤 About Me</h2>
@@ -259,5 +244,28 @@
   <footer style="text-align: center; padding: 2rem 1rem; background: #111; color: #aaa; font-size: 0.9rem;">
     © 2025 videouberwacht — All rights reserved.
   </footer>
+  <script>
+    const slideshowImages = [
+      "2-1530wissewa1231.jpg", "8-8186kacper727.jpg", "11-1530wissewa1230.jpg", "11-1836kacp6403.jpg", "12-1836kacp6403.jpg", "15-1530wissewa1231.jpg",
+      "17-1836kacp6403.jpg", "18-1530wissewa1230.jpg", "30-1530wissewa1230.jpg", "31-1530wissewa1231.jpg", "31-1835kaeper6317.jpg", "35-1836kacp6403.jpg",
+      "36-1530wissewa1230.jpg", "DSC06467.jpg", "DSC06575.jpg", "DSC06839.jpg", "DSC06931.jpg", "R1-02155-004A.jpg", "R1-03913-0021.JPG", "R1-03913-0024.JPG",
+      "R1-03913-0035.JPG", "R1-08878-0004[1].jpg", "R1-08878-0015[1].jpg", "R1-08878-0023[1].jpg", "R1-08878-0024[1].jpg", "R1-08880-002A[1].jpg",
+      "R1-08880-016A[1].jpg"
+    ];
+    let currentIndex = 0;
+    const imgEl = document.getElementById("slideshowImage");
+    function showSlide(index) {
+      currentIndex = (index + slideshowImages.length) % slideshowImages.length;
+      imgEl.style.opacity = 0;
+      setTimeout(() => {
+        imgEl.src = slideshowImages[currentIndex];
+        imgEl.style.opacity = 1;
+      }, 300);
+    }
+    function changeSlide(offset) {
+      showSlide(currentIndex + offset);
+    }
+    setInterval(() => changeSlide(1), 5000);
+  </script>
 </body>
 </html>
